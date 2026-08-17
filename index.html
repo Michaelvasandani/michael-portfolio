@@ -1,0 +1,118 @@
+---
+layout: null
+title: Michael Vasandani · AI Engineer
+description: AI engineer building reliable agentic systems and developer tools.
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <title>{{ page.title }}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">{{ site.data.profile.eyebrow }}</p>
+          <h1>{{ site.data.profile.headline }}</h1>
+          <p class="lede">{{ site.data.profile.intro }}</p>
+        </div>
+        <aside class="contact-card" aria-label="Contact links">
+          <strong>{{ site.data.profile.shortName }}</strong>
+          <a href="mailto:{{ site.data.profile.contact.email }}">Email</a>
+          <a href="{{ site.data.profile.contact.github }}">GitHub</a>
+          <a href="{{ site.data.profile.contact.linkedin }}">LinkedIn</a>
+        </aside>
+      </header>
+
+      <main id="main">
+        <section class="section about-section" id="about" aria-labelledby="about-title">
+          <h2 id="about-title">About me</h2>
+          <div class="section-body">
+            <p class="about-lede">{{ site.data.profile.about }}</p>
+            <div class="about-grid">
+              <article>
+                <p class="eyebrow">Education</p>
+                <h3>{{ site.data.profile.education.degree }}</h3>
+                <p>{{ site.data.profile.education.institution }} · {{ site.data.profile.education.detail }}</p>
+                <p class="muted"><strong>Coursework:</strong> {{ site.data.profile.education.coursework | join: ', ' }}</p>
+              </article>
+              <article>
+                <p class="eyebrow">Hobbies</p>
+                <h3>Curiosity outside the roadmap</h3>
+                <p>{{ site.data.profile.hobbies }}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="experience" aria-labelledby="experience-title">
+          <h2 id="experience-title">Experience</h2>
+          <div class="section-body">
+            {% for role in site.data.profile.experience %}
+            <article class="experience-item">
+              <div class="experience-heading">
+                <div>
+                  <h3>{{ role.role }} <span class="at">·</span> {{ role.company }}</h3>
+                  <p class="muted">{{ role.summary }}</p>
+                </div>
+                <p class="dates">{{ role.dates }}</p>
+              </div>
+              <ul>
+                {% for outcome in role.outcomes %}<li>{{ outcome }}</li>{% endfor %}
+              </ul>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="section" id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <div class="section-body">
+            <p class="section-note">A few systems I’ve built, with outcomes kept next to the work that produced them.</p>
+            {% for project in site.data.profile.projects %}
+            <article class="project-item">
+              <div class="project-meta"><p class="eyebrow">{{ project.kind }}</p><h3>{{ project.name }}</h3>{% for technology in project.technologies %}<span class="tag">{{ technology }}</span>{% endfor %}</div>
+              <div><p>{{ project.purpose }}</p><p class="proof">{{ project.outcome }}</p></div>
+            </article>
+            {% endfor %}
+            {% for project in site.data.generated.projects %}
+            <article class="project-item generated-item">
+              <div class="project-meta"><p class="eyebrow">Generated · Pinned Project</p><h3>{{ project.repository }}</h3>{% for technology in project.technologies %}<span class="tag">{{ technology }}</span>{% endfor %}</div>
+              <div><p>{{ project.purpose }}</p><p class="proof">{{ project.contribution }}</p><a href="{{ project.url }}">Inspect public evidence →</a></div>
+            </article>
+            {% endfor %}
+            {% if site.data.generated.projects.size == 0 %}<p class="empty-state">New public Pinned Projects will appear here after the Portfolio Maintainer verifies their evidence.</p>{% endif %}
+          </div>
+        </section>
+
+        <section class="section" id="recent-work" aria-labelledby="recent-title">
+          <h2 id="recent-title">Recent work</h2>
+          <div class="section-body">
+            <p class="section-note">A generated Recent Work Digest, refreshed from meaningful public GitHub activity.</p>
+            {% for entry in site.data.generated.recent-work.entries %}
+            <article class="digest-item">
+              <time datetime="{{ entry.date }}">{{ entry.date | date: "%b %-d, %Y" }}</time>
+              <div><h3>{{ entry.headline }}</h3><p>{{ entry.summary }}</p><p class="proof"><a href="{{ entry.evidenceUrl }}">View public evidence →</a>{% if entry.technologies.size > 0 %} · {{ entry.technologies | join: ', ' }}{% endif %}</p></div>
+            </article>
+            {% endfor %}
+            {% if site.data.generated.recent-work.entries.size == 0 %}<p class="empty-state">The first digest will appear after a verified weekly refresh.</p>{% endif %}
+          </div>
+        </section>
+
+        <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+          <h2 id="skills-title">Technical toolkit</h2>
+          <div class="section-body skills-grid">
+            {% for category in site.data.profile.skills %}<div><p class="eyebrow">{{ category[0] }}</p><p>{{ category[1] | join: ' · ' }}</p></div>{% endfor %}
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer"><p>{{ site.data.profile.shortName }} · <a href="#top">Back to top ↑</a></p><p class="muted">Resume-derived content is human-authored; generated Projects and Recent Work are evidence-bound.</p></footer>
+    </div>
+  </body>
+</html>

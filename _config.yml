@@ -1,0 +1,17 @@
+title: Michael Vasandani
+description: AI engineer building reliable agentic systems and developer tools.
+url: https://michaelvasandani.github.io
+baseurl: /michael-portfolio
+theme: jekyll-theme-minimal
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+exclude:
+  - node_modules
+  - src
+  - scripts
+  - tests
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - README.md

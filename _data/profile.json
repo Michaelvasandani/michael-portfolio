@@ -1,0 +1,109 @@
+{
+  "name": "Michael Sagar Vasandani",
+  "shortName": "Michael Vasandani",
+  "eyebrow": "AI engineer · Software builder",
+  "headline": "I build agentic systems that turn slow, manual work into reliable workflows.",
+  "intro": "I’m Michael Vasandani, a UC San Diego Data Science graduate working across AI agents, developer tooling, and production software. I like taking an ambiguous operational problem to a workflow people can trust and use.",
+  "contact": {
+    "email": "michaelvasandani6@gmail.com",
+    "github": "https://github.com/Michaelvasandani",
+    "linkedin": "https://linkedin.com/in/michael-vasandani"
+  },
+  "about": "I’m interested in the seam between capable models and dependable products: clear interfaces, grounded retrieval, useful evaluation, and the engineering that lets people use an AI system with confidence.",
+  "education": {
+    "institution": "University of California, San Diego",
+    "degree": "Bachelor of Science in Data Science",
+    "detail": "GPA 3.82 · June 2026",
+    "coursework": ["Algorithms", "Object-Oriented Programming", "ML/AI", "Data Structures", "Databases", "Data Visualization"]
+  },
+  "hobbies": "Outside of work, I enjoy building small experiments, learning in public, and following how new tools change the way people learn and collaborate.",
+  "experience": [
+    {
+      "role": "AI Engineer Intern",
+      "company": "ResMed",
+      "location": "San Diego, CA",
+      "dates": "June 2026 – Present",
+      "summary": "Production agents, internal AI platforms, and developer workflows.",
+      "outcomes": [
+        "Cut bug-fix turnaround by 60% by engineering a production multi-agent Crashlytics remediation workflow with GitHub Agentic Workflows for automated investigation, fix generation, and human-in-the-loop validation.",
+        "Enabled 40+ users to self-serve internal questions by building a LangChain/LangGraph AI investigation platform with MCP tools, RAG memory, a FastAPI REST API, and AWS CloudWatch/DynamoDB integrations.",
+        "Increased internal AI adoption by 70% by launching a reusable agent marketplace with CI/CD validation and versioning.",
+        "Saved 10+ developer hours weekly with an agentic workflow that detects documentation drift and opens pull requests."
+      ]
+    },
+    {
+      "role": "Software Engineer – AI Intern",
+      "company": "Qualcomm Institute",
+      "location": "San Diego, CA",
+      "dates": "September 2025 – May 2026",
+      "summary": "LLM pipelines and Unreal Engine integration.",
+      "outcomes": [
+        "Cut content authoring time by 85% with an LLM generation/compliance pipeline using FastAPI, MongoDB, and Ollama.",
+        "Integrated the system into Unreal Engine via C++ components, enabling real-time API calls and bulk dialogue importing.",
+        "Reduced token usage and processing time by 70% by implementing semantic retrieval over prior dialogue trees in MongoDB."
+      ]
+    },
+    {
+      "role": "Research Assistant",
+      "company": "Smarr Lab",
+      "location": "San Diego, CA",
+      "dates": "April 2025 – May 2026",
+      "summary": "Knowledge systems and large-scale data.",
+      "outcomes": [
+        "Built an AI knowledge base using Python, Codex, and Obsidian that transforms academic papers into knowledge graphs.",
+        "Accelerated an ETL pipeline 7× for 700M+ rows by optimizing BigQuery SQL and leveraging Polars for parallel processing."
+      ]
+    },
+    {
+      "role": "Software Engineer Intern",
+      "company": "Boost Health Labs",
+      "location": "San Diego, CA",
+      "dates": "June 2025 – September 2025",
+      "summary": "Full-stack product delivery and web experiences.",
+      "outcomes": [
+        "Increased website engagement by 45% by building Angular/TypeScript components and integrating REST services.",
+        "Owned full-stack features from requirements through production by collaborating across product and development teams."
+      ]
+    },
+    {
+      "role": "Software Engineer Intern",
+      "company": "TipTop Technologies",
+      "location": "Sunnyvale, CA",
+      "dates": "March 2025 – June 2025",
+      "summary": "Analytics and natural-language codebase tooling.",
+      "outcomes": [
+        "Architected an internal GitHub analytics tool on AWS Lambda and DynamoDB, cutting leadership review time by 90%.",
+        "Engineered an LLM pipeline with RAG and Pinecone embeddings for natural-language codebase queries."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Hackathon-In-A-Box",
+      "kind": "Selected project",
+      "purpose": "An eight-phase agentic planning platform that generates source-verified venue, sponsor, and mentor recommendations.",
+      "outcome": "Placed 2nd at the Claude Social Impact Hackathon and drove adoption across 10+ nonprofits.",
+      "technologies": ["TypeScript", "Claude Agent SDK", "Node.js", "PostgreSQL"]
+    },
+    {
+      "name": "SafeTrip SF",
+      "kind": "Selected project",
+      "purpose": "A RAG-powered trip planner generating itineraries from safety data across 41 neighborhoods.",
+      "outcome": "Won the Musa Labs Hackathon and grounded recommendations in 10,000+ incidents.",
+      "technologies": ["Python", "LangGraph", "Pydantic", "FastAPI", "PostgreSQL", "pgvector"]
+    },
+    {
+      "name": "Personal Call Agent",
+      "kind": "Selected project",
+      "purpose": "A real-time voice agent that handles missed calls, checks availability, books meetings, and sends call summaries.",
+      "outcome": "Connected Bland AI to Google Calendar with webhook verification and API contract tests.",
+      "technologies": ["TypeScript", "Vercel", "Google Calendar API", "Bland AI"]
+    }
+  ],
+  "skills": {
+    "Languages": ["Java", "Python", "C++", "SQL", "JavaScript", "TypeScript", "HTML/CSS", "R"],
+    "Frameworks": ["React", "Node.js", "Angular", "Material-UI", "FastAPI"],
+    "Tools & Cloud": ["Git", "GitHub Actions", "Docker", "Kubernetes", "AWS", "GCP", "LangGraph", "Ollama", "Pinecone", "pgvector"],
+    "Libraries": ["pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "LangChain", "Hugging Face Transformers", "Pydantic"]
+  }
+}

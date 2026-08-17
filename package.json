@@ -1,0 +1,20 @@
+{
+  "name": "michael-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "node scripts/build-site.ts",
+    "maintainer:pins": "node scripts/maintainer.ts --mode=pins",
+    "maintainer:digest": "node scripts/maintainer.ts --mode=digest"
+  },
+  "dependencies": {
+    "@octokit/graphql": "^9.0.4",
+    "@octokit/rest": "^22.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}
