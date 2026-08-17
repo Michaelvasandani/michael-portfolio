@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recent Work Digest lifecycle — prototype</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d2430;
+      --muted: #667085;
+      --line: #d9dee8;
+      --panel: #ffffff;
+      --canvas: #f5f7fb;
+      --accent: #5666d8;
+      --accent-soft: #eef0ff;
+      --green: #1d7a52;
+      --green-soft: #e7f5ed;
+      --amber: #9a5e00;
+      --amber-soft: #fff5df;
+      --red: #a43a42;
+      --red-soft: #ffeaec;
+      --shadow: 0 10px 30px rgba(26, 35, 55, 0.07);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--canvas); }
+    main { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 56px 0 80px; }
+    .eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 0.75rem; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 760px; margin-bottom: 14px; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.04; letter-spacing: -0.045em; }
+    h2 { margin-bottom: 8px; font-size: 1.2rem; letter-spacing: -0.02em; }
+    h3 { margin-bottom: 5px; font-size: 1rem; line-height: 1.25; }
+    .lede { max-width: 810px; margin-bottom: 26px; color: #465064; font-size: 1.08rem; }
+    .question { max-width: 890px; padding: 16px 18px; border-left: 4px solid var(--accent); border-radius: 8px; background: var(--accent-soft); color: #303a67; }
+    .question strong { display: block; margin-bottom: 4px; }
+    .surface { padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: var(--shadow); }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: end; gap: 18px; margin: 28px 0 18px; }
+    .field { min-width: 230px; }
+    label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+    select, button { font: inherit; }
+    select { width: 100%; padding: 10px 12px; border: 1px solid #bbc3d3; border-radius: 8px; background: white; color: var(--ink); }
+    button { cursor: pointer; border: 1px solid #bbc3d3; border-radius: 8px; padding: 10px 13px; background: white; color: var(--ink); font-weight: 700; transition: border-color 120ms ease, background 120ms ease, transform 120ms ease; }
+    button:hover { border-color: var(--accent); background: #fafaff; }
+    button:active { transform: translateY(1px); }
+    button.primary { border-color: var(--accent); background: var(--accent); color: white; }
+    button.primary:hover { background: #4655c7; }
+    button:disabled { cursor: not-allowed; opacity: 0.45; }
+    .scenario-tabs { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 0; }
+    .scenario-tabs button[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); color: #313d91; }
+    .scenario-copy { margin: 18px 0 16px; color: #4c566b; }
+    .scenario-copy strong { color: var(--ink); }
+    .walkthrough { display: flex; flex-wrap: wrap; gap: 8px; }
+    .step-done { border-color: #a9d6bd; background: var(--green-soft); color: var(--green); }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr); gap: 18px; margin-top: 18px; }
+    .workspace > .surface { min-width: 0; }
+    .section-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .section-head p { margin-bottom: 0; color: var(--muted); font-size: 0.88rem; }
+    .state-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
+    .stat { min-height: 78px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: #fbfcfe; }
+    .stat span { display: block; color: var(--muted); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 4px; font-size: 1.05rem; }
+    .entry-list { display: grid; gap: 9px; }
+    .entry { padding: 13px 14px; border: 1px solid var(--line); border-radius: 9px; background: white; }
+    .entry-top { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 0.78rem; }
+    .entry h3 { margin-top: 5px; }
+    .entry p { margin-bottom: 0; color: #566075; font-size: 0.9rem; }
+    .entry .tags { margin-top: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag, .status { display: inline-flex; align-items: center; width: fit-content; padding: 3px 7px; border-radius: 999px; font-size: 0.72rem; font-weight: 750; }
+    .tag { background: #eef1f6; color: #4a566c; }
+    .status.new { background: var(--green-soft); color: var(--green); }
+    .status.retained { background: var(--accent-soft); color: #3948a2; }
+    .status.retired { background: var(--red-soft); color: var(--red); }
+    .status.replaced { background: var(--amber-soft); color: var(--amber); }
+    .empty { padding: 18px 14px; border: 1px dashed #bbc3d3; border-radius: 9px; color: var(--muted); font-size: 0.9rem; }
+    .subhead { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 22px 0 10px; }
+    .subhead h3 { margin: 0; }
+    .subhead span { color: var(--muted); font-size: 0.78rem; }
+    .policy-list { display: grid; gap: 10px; }
+    .policy { padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: #fbfcfe; }
+    .policy.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+    .policy-header { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+    .policy-header h3 { margin: 0; }
+    .policy p { margin: 8px 0 0; color: #566075; font-size: 0.88rem; }
+    .policy .result { margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--line); color: #303a67; font-size: 0.84rem; }
+    .policy .result strong { color: var(--ink); }
+    .policy-actions { display: flex; gap: 8px; margin-top: 11px; }
+    .policy-actions button { padding: 7px 9px; font-size: 0.78rem; }
+    .timeline { display: grid; gap: 8px; }
+    .timeline-row { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 8px; background: #f5f7fb; font-size: 0.82rem; }
+    .timeline-row time { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .timeline-row strong { font-size: 0.84rem; }
+    .timeline-row span { color: var(--muted); text-align: right; }
+    .note { margin: 20px 0 0; color: var(--muted); font-size: 0.84rem; }
+    .decision-boundary { margin-top: 18px; padding: 16px 18px; border: 1px solid #efd39a; border-radius: 10px; background: #fffaf0; color: #76521b; }
+    .decision-boundary strong { display: block; margin-bottom: 4px; color: #65430f; }
+    footer { margin-top: 20px; color: var(--muted); font-size: 0.78rem; }
+    @media (max-width: 820px) {
+      main { width: min(100% - 24px, 680px); padding-top: 34px; }
+      .workspace { grid-template-columns: 1fr; }
+      .state-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 450px) {
+      .state-grid { grid-template-columns: 1fr; }
+      .timeline-row { grid-template-columns: 1fr; gap: 3px; }
+      .timeline-row span { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">HITL prototype · throwaway · in-memory only</p>
+    <h1>Recent Work Digest lifecycle</h1>
+    <p class="lede">A click-through of what a weekly Recent Work Digest could look like when a week is active, sparse, or empty. Use it to compare entry persistence, replacement, aging, and retirement before choosing a policy.</p>
+
+    <div class="question">
+      <strong>Decision question</strong>
+      After a weekly refresh, should entries from earlier weeks persist, be replaced by the new set, age out after a defined window, or retire differently when no new Meaningful Activity is found?
+    </div>
+
+    <section class="surface toolbar" aria-labelledby="policy-title">
+      <div class="field">
+        <label id="policy-title" for="policy-select">Compare a policy candidate</label>
+        <select id="policy-select">
+          <option value="fresh">Candidate A · Fresh week only</option>
+          <option value="rolling">Candidate B · Rolling 28-day window</option>
+          <option value="hold">Candidate C · Hold until stale</option>
+        </select>
+      </div>
+      <button class="primary" id="reset-button" type="button">Reset this walkthrough</button>
+      <button id="clear-button" type="button">Clear in-memory history</button>
+    </section>
+
+    <section class="surface" aria-labelledby="walkthrough-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Guided walkthroughs</p>
+          <h2 id="walkthrough-title">Choose a week shape, then press each step</h2>
+        </div>
+        <p id="step-count">0 of 2 steps</p>
+      </div>
+      <div class="scenario-tabs" role="tablist" aria-label="Lifecycle scenarios">
+        <button type="button" role="tab" aria-selected="true" data-scenario="active">Active week</button>
+        <button type="button" role="tab" aria-selected="false" data-scenario="sparse">Sparse week</button>
+        <button type="button" role="tab" aria-selected="false" data-scenario="empty">Empty week</button>
+        <button type="button" role="tab" aria-selected="false" data-scenario="aging">Aging and retirement</button>
+      </div>
+      <p class="scenario-copy" id="scenario-copy"></p>
+      <div class="walkthrough" id="walkthrough-buttons"></div>
+    </section>
+
+    <div class="workspace">
+      <section class="surface" aria-labelledby="state-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Current state</p>
+            <h2 id="state-title">What the selected policy would publish</h2>
+          </div>
+          <span class="status retained" id="last-change">Ready</span>
+        </div>
+        <div class="state-grid" id="state-stats"></div>
+        <div class="subhead"><h3>Incoming Meaningful Activity</h3><span id="incoming-label"></span></div>
+        <div class="entry-list" id="incoming-list"></div>
+        <div class="subhead"><h3>Published Recent Work Digest</h3><span id="published-label"></span></div>
+        <div class="entry-list" id="published-list"></div>
+        <p class="note">The entry cards show the full relevant state after each action. “Retired” means no longer visible in the digest; the prototype keeps the lifecycle note only so the human can inspect what happened.</p>
+      </section>
+
+      <aside class="surface" aria-labelledby="compare-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Live comparison</p>
+            <h2 id="compare-title">The same refresh under each candidate</h2>
+          </div>
+        </div>
+        <div class="policy-list" id="policy-list"></div>
+        <div class="subhead"><h3>Lifecycle timeline</h3><span id="timeline-label"></span></div>
+        <div class="timeline" id="timeline"></div>
+        <div class="decision-boundary">
+          <strong>Human decision still open</strong>
+          This artifact records no chosen policy. Pick a candidate only to inspect its output; the final lifecycle rule belongs to the human review of these states.
+        </div>
+      </aside>
+    </div>
+
+    <footer>Prototype artifact for “Choose the Recent Work Digest lifecycle.” It has no persistence, no network calls, and no production wiring.</footer>
+  </main>
+
+  <script>
+    // Portable lifecycle module: no DOM access, network, or persistence.
+    const MAX_ENTRIES = 3;
+    const DAY = 24 * 60 * 60 * 1000;
+
+    const entries = {
+      search: { id: 'search-workflow', date: '2026-08-08', headline: 'Made search results easier to trust', summary: 'Michael authored a substantive search workflow change and connected it to public implementation evidence.', technologies: ['TypeScript', 'Search'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/commit/search-workflow' },
+      actions: { id: 'actions-hardening', date: '2026-08-09', headline: 'Hardened an automated publishing path', summary: 'Michael improved a public automation path with validation and a safer failure boundary.', technologies: ['GitHub Actions', 'Node.js'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/pull/14' },
+      docs: { id: 'docs-refresh', date: '2026-08-10', headline: 'Clarified the contributor workflow', summary: 'Michael made the contributor path more coherent through a focused documentation change.', technologies: ['Markdown'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/commit/docs-refresh' },
+      signals: { id: 'signals-observability', date: '2026-08-15', headline: 'Added clearer maintainer signals', summary: 'Michael connected recovery state to observable publishing outcomes with direct public evidence.', technologies: ['TypeScript', 'GitHub'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/pull/18' },
+      site: { id: 'site-accessibility', date: '2026-08-15', headline: 'Improved the portfolio reading path', summary: 'Michael made a focused accessibility improvement to the public portfolio experience.', technologies: ['HTML', 'CSS'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/commit/site-accessibility' },
+      tiny: { id: 'tiny-fix', date: '2026-08-15', headline: 'Shipped one focused improvement', summary: 'Michael made a small but substantive public change with a direct evidence link.', technologies: ['TypeScript'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/commit/tiny-fix' },
+      old: { id: 'old-work', date: '2026-07-12', headline: 'Built the first evidence-bound digest path', summary: 'Michael established the initial public workflow that the later digest changes build on.', technologies: ['TypeScript'], evidenceUrl: 'https://github.com/Michaelvasandani/portfolio/commit/old-work' },
+    };
+
+    const scenarios = {
+      active: {
+        label: 'Active week',
+        copy: '<strong>Three new entries arrive.</strong> Watch whether the prior digest persists, is replaced, or competes for the three visible slots.',
+        steps: [
+          { label: '1. Load last week\'s digest', action: { type: 'LOAD', week: '2026-08-10', incoming: [entries.search, entries.actions, entries.docs] } },
+          { label: '2. Refresh with three new entries', action: { type: 'REFRESH', week: '2026-08-17', incoming: [entries.signals, entries.site, entries.tiny] } },
+        ],
+      },
+      sparse: {
+        label: 'Sparse week',
+        copy: '<strong>Only one new entry arrives.</strong> Compare a one-entry digest with top-up behavior from prior weeks, and notice what becomes retired.',
+        steps: [
+          { label: '1. Load last week\'s digest', action: { type: 'LOAD', week: '2026-08-10', incoming: [entries.search, entries.actions, entries.docs] } },
+          { label: '2. Refresh with one new entry', action: { type: 'REFRESH', week: '2026-08-17', incoming: [entries.tiny] } },
+        ],
+      },
+      empty: {
+        label: 'Empty week',
+        copy: '<strong>No verified Meaningful Activity is found.</strong> Compare an empty digest with a retained last good digest, then advance time to expose retirement behavior.',
+        steps: [
+          { label: '1. Load last week\'s digest', action: { type: 'LOAD', week: '2026-08-10', incoming: [entries.search, entries.actions, entries.docs] } },
+          { label: '2. Refresh with no entries', action: { type: 'REFRESH', week: '2026-08-17', incoming: [] } },
+          { label: '3. Advance four weeks with no entries', action: { type: 'REFRESH', week: '2026-09-14', incoming: [] } },
+        ],
+      },
+      aging: {
+        label: 'Aging and retirement',
+        copy: '<strong>One old entry has no replacement.</strong> Advance through empty weeks and inspect when each candidate retires the last visible item.',
+        steps: [
+          { label: '1. Load a four-week-old digest', action: { type: 'LOAD', week: '2026-08-10', incoming: [entries.old] } },
+          { label: '2. Advance one empty week', action: { type: 'REFRESH', week: '2026-08-17', incoming: [] } },
+          { label: '3. Advance another empty week', action: { type: 'REFRESH', week: '2026-08-24', incoming: [] } },
+          { label: '4. Advance to the eighth week', action: { type: 'REFRESH', week: '2026-09-07', incoming: [] } },
+        ],
+      },
+    };
+
+    const policies = {
+      fresh: {
+        id: 'fresh', label: 'Candidate A · Fresh week only',
+        description: 'Every refresh replaces the visible digest with this week’s entries. An empty week publishes an empty digest.',
+        apply(previous, incoming) {
+          return { entries: newest(incoming), retired: previous.filter((entry) => !incoming.some((item) => item.id === entry.id)), note: incoming.length ? 'Replaced the prior visible set.' : 'Cleared the digest because this week is empty.' };
+        },
+      },
+      rolling: {
+        id: 'rolling', label: 'Candidate B · Rolling 28-day window',
+        description: 'Merge new entries with prior entries, retire anything older than 28 days, and keep the three newest visible entries.',
+        apply(previous, incoming, week) {
+          const combined = uniqueNewest([...incoming, ...previous]);
+          const cutoff = dateValue(week) - (28 * DAY);
+          const visible = newest(combined.filter((entry) => dateValue(entry.date) >= cutoff));
+          return { entries: visible, retired: combined.filter((entry) => !visible.some((item) => item.id === entry.id)), note: 'Merged recent work, then aged entries beyond 28 days.' };
+        },
+      },
+      hold: {
+        id: 'hold', label: 'Candidate C · Hold until stale',
+        description: 'Replace only when new entries exist; on empty weeks keep the last good digest until entries reach 56 days old, then retire them.',
+        apply(previous, incoming, week) {
+          const base = incoming.length ? newest(incoming) : previous;
+          const cutoff = dateValue(week) - (56 * DAY);
+          const visible = newest(base.filter((entry) => dateValue(entry.date) >= cutoff));
+          return { entries: visible, retired: [...previous, ...incoming].filter((entry, index, all) => !visible.some((item) => item.id === entry.id) && all.findIndex((candidate) => candidate.id === entry.id) === index), note: incoming.length ? 'Replaced the last good set because new work arrived.' : (visible.length ? 'Kept the last good set while it is not stale.' : 'Retired the digest after the 56-day stale threshold.') };
+        },
+      },
+    };
+
+    function dateValue(value) { return new Date(`${value}T00:00:00Z`).getTime(); }
+    function uniqueNewest(list) {
+      const byId = new Map();
+      list.forEach((entry) => byId.set(entry.id, entry));
+      return [...byId.values()].sort((a, b) => b.date.localeCompare(a.date)).slice(0, MAX_ENTRIES);
+    }
+    function newest(list) { return uniqueNewest(list); }
+    function initialState(scenario = 'active') {
+      return { scenario, week: '2026-08-03', previous: [], incoming: [], published: [], retired: [], history: [], actions: [], step: 0, lastAction: 'Ready for a walkthrough.' };
+    }
+    function reduce(state, action) {
+      if (action.type === 'RESET') return initialState(state.scenario);
+      if (action.type === 'CLEAR') return initialState(state.scenario);
+      if (action.type === 'LOAD') {
+        return { ...state, week: action.week, incoming: [], previous: [], published: action.incoming, retired: [], actions: [...state.actions, action], step: state.step + 1, lastAction: `Loaded ${action.incoming.length} entries as the starting digest.` };
+      }
+      if (action.type === 'REFRESH') {
+        const selected = policies[state.policy] || policies.fresh;
+        const result = selected.apply(state.published.length ? state.published : state.incoming, action.incoming, action.week);
+        const previous = state.published.length ? state.published : state.incoming;
+        return {
+          ...state,
+          week: action.week,
+          previous,
+          incoming: action.incoming,
+          published: result.entries,
+          retired: result.retired,
+          actions: [...state.actions, action],
+          history: [...state.history, { week: action.week, incoming: action.incoming.length, visible: result.entries.length, retired: result.retired.length, note: result.note }],
+          step: state.step + 1,
+          lastAction: result.note,
+        };
+      }
+      return state;
+    }
+
+    function replay(state, policyId) {
+      let simulated = initialState(state.scenario);
+      simulated.policy = policyId;
+      for (const action of state.actions) simulated = reduce(simulated, action);
+      return simulated;
+    }
+    function stateForPolicy(state, policyId) {
+      const simulated = replay(state, policyId);
+      return { entries: simulated.published, note: simulated.lastAction, retired: simulated.retired };
+    }
+
+    // Page shell: all DOM work stays below this line.
+    const ui = {
+      scenario: 'active',
+      policy: 'fresh',
+      state: initialState('active'),
+    };
+    ui.state.policy = ui.policy;
+
+    const $ = (selector) => document.querySelector(selector);
+    const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+    function entryHtml(entry, status) {
+      return `<article class="entry"><div class="entry-top"><span>${escape(entry.date)}</span><span class="status ${status}">${escape(status)}</span></div><h3>${escape(entry.headline)}</h3><p>${escape(entry.summary)}</p><div class="tags">${entry.technologies.map((technology) => `<span class="tag">${escape(technology)}</span>`).join('')}</div></article>`;
+    }
+    function listHtml(list, status) {
+      return list.length ? list.map((entry) => entryHtml(entry, status)).join('') : '<div class="empty">No entries in this state.</div>';
+    }
+    function currentPrevious() { return ui.state.previous.length ? ui.state.previous : (ui.state.step ? ui.state.incoming : []); }
+    function render() {
+      const scenario = scenarios[ui.scenario];
+      $('#scenario-copy').innerHTML = scenario.copy;
+      $('#step-count').textContent = `${Math.min(ui.state.step, scenario.steps.length)} of ${scenario.steps.length} steps`;
+      $('#walkthrough-buttons').innerHTML = scenario.steps.map((step, index) => `<button type="button" class="${index < ui.state.step ? 'step-done' : ''}" data-step="${index}" ${index > ui.state.step ? 'disabled' : ''}>${escape(step.label)}</button>`).join('');
+      $('#state-stats').innerHTML = `<div class="stat"><span>Current week</span><strong>${escape(ui.state.week)}</strong></div><div class="stat"><span>Incoming entries</span><strong>${ui.state.incoming.length}</strong></div><div class="stat"><span>Visible entries</span><strong>${ui.state.published.length}</strong></div><div class="stat"><span>Retired this refresh</span><strong>${ui.state.retired.length}</strong></div><div class="stat"><span>Selected view</span><strong>${escape(policies[ui.policy].label.split('·')[0].trim())}</strong></div><div class="stat"><span>Persistence</span><strong>${ui.state.published.length ? 'Visible' : 'Empty'}</strong></div>`;
+      $('#last-change').textContent = ui.state.lastAction;
+      $('#incoming-label').textContent = ui.state.incoming.length ? `${ui.state.incoming.length} candidate${ui.state.incoming.length === 1 ? '' : 's'} from this week` : 'No verified activity';
+      $('#incoming-list').innerHTML = listHtml(ui.state.incoming, 'new');
+      $('#published-label').textContent = `${ui.state.published.length} of ${MAX_ENTRIES} visible slots`;
+      $('#published-list').innerHTML = listHtml(ui.state.published, 'retained');
+      $('#policy-list').innerHTML = Object.values(policies).map((policy) => {
+        const result = stateForPolicy(ui.state, policy.id);
+        const selected = policy.id === ui.policy;
+        const resultEntries = result.entries.length ? result.entries.map((entry) => escape(entry.headline)).join(' · ') : 'Empty digest';
+        return `<article class="policy ${selected ? 'selected' : ''}"><div class="policy-header"><h3>${escape(policy.label)}</h3><span class="status ${selected ? 'retained' : 'replaced'}">${selected ? 'Inspecting' : 'Compare'}</span></div><p>${escape(policy.description)}</p><div class="result"><strong>Would publish:</strong> ${resultEntries}<br><strong>Transition:</strong> ${escape(result.note)}</div><div class="policy-actions"><button type="button" data-policy="${policy.id}">${selected ? 'Selected' : 'Inspect this candidate'}</button></div></article>`;
+      }).join('');
+      $('#timeline-label').textContent = ui.state.history.length ? `${ui.state.history.length} refresh${ui.state.history.length === 1 ? '' : 'es'}` : 'No refreshes yet';
+      $('#timeline').innerHTML = ui.state.history.length ? ui.state.history.map((item) => `<div class="timeline-row"><time>${escape(item.week)}</time><strong>${item.incoming} incoming → ${item.visible} visible</strong><span>${item.retired ? `${item.retired} retired` : 'No retirement'}</span></div>`).join('') : '<div class="empty">Run a guided step to see persistence and retirement over time.</div>';
+      document.querySelectorAll('[data-scenario]').forEach((button) => button.setAttribute('aria-selected', String(button.dataset.scenario === ui.scenario)));
+      $('#policy-select').value = ui.policy;
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = event.target.closest('button');
+      if (!target) return;
+      if (target.dataset.scenario) {
+        ui.scenario = target.dataset.scenario;
+        ui.state = initialState(ui.scenario);
+        ui.state.policy = ui.policy;
+        render();
+        return;
+      }
+      if (target.dataset.policy) {
+        ui.policy = target.dataset.policy;
+        ui.state = replay(ui.state, ui.policy);
+        ui.state.policy = ui.policy;
+        render();
+        return;
+      }
+      if (target.dataset.step !== undefined) {
+        const index = Number(target.dataset.step);
+        const step = scenarios[ui.scenario].steps[index];
+        if (index !== ui.state.step) return;
+        ui.state.policy = ui.policy;
+        ui.state = reduce(ui.state, step.action);
+        ui.state.policy = ui.policy;
+        render();
+        return;
+      }
+      if (target.id === 'reset-button') {
+        ui.state = initialState(ui.scenario);
+        ui.state.policy = ui.policy;
+        render();
+        return;
+      }
+      if (target.id === 'clear-button') {
+        ui.state = reduce(ui.state, { type: 'CLEAR' });
+        ui.state.policy = ui.policy;
+        render();
+      }
+    });
+    $('#policy-select').addEventListener('change', (event) => {
+      ui.policy = event.target.value;
+      ui.state = replay(ui.state, ui.policy);
+      ui.state.policy = ui.policy;
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>
