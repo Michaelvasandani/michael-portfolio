@@ -12,12 +12,12 @@
     "R_kgDOTeqbLQ",
     "R_kgDOTfuvFQ"
   ],
-  "activityCursor": null,
+  "activityCursor": "17888004906",
   "lastPinSyncAt": "2026-08-17T04:53:06.592Z",
-  "lastDigestRefreshAt": null,
+  "lastDigestRefreshAt": "2026-08-17T04:54:57.236Z",
   "checkpoint": {
-    "revision": "530e301e4f1d69b927971c68dc2d28bd3a059eb9",
-    "committedAt": "2026-08-17T04:53:06.592Z"
+    "revision": "e1e46f7b77b7f7a540ee67bdf08a3e54a875857f",
+    "committedAt": "2026-08-17T04:54:57.236Z"
   },
   "publishedRevision": null,
   "openIncidentFingerprints": [],
