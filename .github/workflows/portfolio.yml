@@ -239,7 +239,10 @@ jobs:
 
   deploy:
     needs: publish
-    if: ${{ needs.publish.outputs.route == 'direct' }}
+    # The publish job intentionally runs with always() when the maintainer
+    # job is skipped for an ordinary push; keep that successful path eligible
+    # for deployment instead of inheriting the skipped ancestor.
+    if: ${{ always() && needs.publish.result == 'success' && needs.publish.outputs.route == 'direct' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
