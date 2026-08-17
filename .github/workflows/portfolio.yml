@@ -131,6 +131,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          FORCE_PULL_REQUEST: ${{ vars.PORTFOLIO_FORCE_PULL_REQUEST }}
         run: |
           set -euo pipefail
           allowed_paths=(
@@ -172,7 +173,7 @@ jobs:
           if [ -n "$rulesets" ] && jq -e '.[] | select(.enforcement == "active") | .rules[]? | select(.type == "pull_request")' >/dev/null 2>&1 <<< "$rulesets"; then
             requires_pr=true
           fi
-          force_pr="$(gh variable get PORTFOLIO_FORCE_PULL_REQUEST --repo "$GITHUB_REPOSITORY" --json value --jq '.value' 2>/dev/null || true)"
+          force_pr="${FORCE_PULL_REQUEST:-}"
           if [ "${force_pr,,}" = true ]; then requires_pr=true; fi
 
           route=direct
