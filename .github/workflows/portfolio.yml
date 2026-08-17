@@ -102,7 +102,7 @@ jobs:
 
   publish:
     needs: maintain
-    if: ${{ always() && (github.event_name == 'push' || needs.maintain.result == 'success') }}
+    if: ${{ always() && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'deploy') || needs.maintain.result == 'success') }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
