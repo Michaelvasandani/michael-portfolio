@@ -1,0 +1,240 @@
+name: Portfolio maintainer and Pages
+
+on:
+  push:
+    branches:
+      - codex/build-site-maintainer
+  schedule:
+    # GitHub profile pins have no webhook; poll off the hour for a best-effort
+    # sub-24-hour detection target.
+    - cron: '17 */6 * * *'
+    # The weekly digest is the expensive refresh and runs Monday at 02:23 UTC.
+    - cron: '23 2 * * 1'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Refresh mode (deploy publishes the current checkout only)
+        required: true
+        type: choice
+        options:
+          - pins
+          - digest
+          - deploy
+        default: pins
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-maintainer-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PORTFOLIO_LOGIN: Michaelvasandani
+  NODE_VERSION: '22.x'
+
+jobs:
+  maintain:
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.mode != 'deploy') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      mode: ${{ steps.mode.outputs.mode }}
+    steps:
+      - name: Check out trusted default branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Select refresh mode
+        id: mode
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = schedule ] && [ "$SCHEDULE" = '23 2 * * 1' ]; then
+            mode=digest
+          else
+            mode="${INPUT_MODE:-pins}"
+          fi
+          case "$mode" in
+            pins|digest) ;;
+            *) echo "Unsupported refresh mode: $mode" >&2; exit 1 ;;
+          esac
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "Selected Portfolio Maintainer mode: $mode" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Run tests
+        run: npm test
+
+      - name: Type-check and validate site
+        run: |
+          npm run typecheck
+          npm run build
+
+      - name: Run Portfolio Maintainer
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PORTFOLIO_GITHUB_LOGIN: ${{ env.PORTFOLIO_LOGIN }}
+        run: npm run maintainer:${{ steps.mode.outputs.mode }}
+
+      - name: Upload validated generated candidate
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: maintainer-candidate
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            _data/generated/projects.json
+            _data/generated/recent-work.json
+            .portfolio-maintainer/state.json
+
+  publish:
+    needs: maintain
+    if: ${{ always() && (github.event_name == 'push' || needs.maintain.result == 'success') }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      administration: read
+      contents: write
+      pull-requests: write
+    outputs:
+      route: ${{ steps.publish.outputs.route }}
+      checkpoint: ${{ steps.publish.outputs.checkpoint }}
+    steps:
+      - name: Check out trusted default branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Download maintainer candidate
+        if: ${{ needs.maintain.result == 'success' }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: maintainer-candidate
+          path: .candidate
+
+      - name: Apply candidate and select publication route
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          allowed_paths=(
+            '_data/generated/projects.json'
+            '_data/generated/recent-work.json'
+            '.portfolio-maintainer/state.json'
+          )
+
+          if [ -d .candidate ]; then
+            mkdir -p _data/generated .portfolio-maintainer
+            cp .candidate/_data/generated/projects.json _data/generated/projects.json
+            cp .candidate/_data/generated/recent-work.json _data/generated/recent-work.json
+            cp .candidate/.portfolio-maintainer/state.json .portfolio-maintainer/state.json
+          fi
+
+          changed_paths="$(git diff --name-only)"
+          if [ -n "$changed_paths" ]; then
+            while IFS= read -r path; do
+              case " ${allowed_paths[*]} " in
+                *" $path "*) ;;
+                *) echo "Refusing to publish protected path: $path" >&2; exit 1 ;;
+              esac
+            done <<< "$changed_paths"
+          fi
+
+          changed=false
+          if [ -n "$changed_paths" ]; then changed=true; fi
+          requires_pr=false
+
+          # Branch protection and active pull-request rulesets take precedence
+          # over direct publication. Never weaken either policy here.
+          protection="$(gh api "repos/${GITHUB_REPOSITORY}/branches/${DEFAULT_BRANCH}/protection" 2>/dev/null || true)"
+          if [ -n "$protection" ] && jq -e '.required_pull_request_reviews != null' >/dev/null 2>&1 <<< "$protection"; then
+            requires_pr=true
+          fi
+          rulesets="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/rulesets?includes_parents=true" 2>/dev/null || true)"
+          if [ -n "$rulesets" ] && jq -e '.[] | select(.enforcement == "active") | .rules[]? | select(.type == "pull_request")' >/dev/null 2>&1 <<< "$rulesets"; then
+            requires_pr=true
+          fi
+          force_pr="$(gh variable get PORTFOLIO_FORCE_PULL_REQUEST --repo "$GITHUB_REPOSITORY" --json value --jq '.value' 2>/dev/null || true)"
+          if [ "${force_pr,,}" = true ]; then requires_pr=true; fi
+
+          route=direct
+          checkpoint="$(git rev-parse HEAD)"
+          pr_url=''
+          if [ "$changed" = true ] && [ "$requires_pr" = true ]; then
+            route=pull-request
+            fingerprint="$(git diff --binary -- "${allowed_paths[@]}" | sha256sum | cut -d' ' -f1)"
+            pr_branch="maintainer/candidate-${fingerprint}"
+            existing_pr="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$pr_branch" --state open --json url --jq '.[0].url' 2>/dev/null || true)"
+            if [ -n "$existing_pr" ]; then
+              pr_url="$existing_pr"
+            else
+              if git ls-remote --exit-code origin "refs/heads/$pr_branch" >/dev/null 2>&1; then
+                pr_branch="${pr_branch}-${GITHUB_RUN_ID}"
+              fi
+              git switch --create "$pr_branch"
+              git add -- "${allowed_paths[@]}"
+              git commit -m "chore(maintainer): propose generated portfolio refresh"
+              git push origin "HEAD:$pr_branch"
+              pr_url="$(gh pr create --repo "$GITHUB_REPOSITORY" --base "$DEFAULT_BRANCH" --head "$pr_branch" --title "chore(maintainer): propose generated portfolio refresh" --body "Automated Portfolio Maintainer candidate. Review generated-only changes before merging. Candidate fingerprint: $fingerprint")"
+            fi
+            checkpoint="$(git rev-parse HEAD)"
+          elif [ "$changed" = true ]; then
+            git add -- "${allowed_paths[@]}"
+            git commit -m "chore(maintainer): publish generated portfolio refresh"
+            git push origin "HEAD:$DEFAULT_BRANCH"
+            checkpoint="$(git rev-parse HEAD)"
+          fi
+
+          {
+            echo "### Publication"
+            echo "- Route: $route"
+            echo "- Generated changes: $changed"
+            echo "- Checkpoint: $checkpoint"
+            if [ -n "$pr_url" ]; then echo "- Pull request: $pr_url"; fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "route=$route" >> "$GITHUB_OUTPUT"
+          echo "checkpoint=$checkpoint" >> "$GITHUB_OUTPUT"
+
+      - name: Build Pages artifact for direct publication
+        if: ${{ steps.publish.outputs.route == 'direct' }}
+        uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697 # v1.0.13
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Upload Pages artifact
+        if: ${{ steps.publish.outputs.route == 'direct' }}
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+        with:
+          path: ./_site
+
+  deploy:
+    needs: publish
+    if: ${{ needs.publish.outputs.route == 'direct' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
