@@ -30,6 +30,7 @@ A deployed GitHub Pages portfolio using the Minimal theme that presents resume-d
 - [Define Portfolio Maintainer recovery and observability](issues/10-define-maintainer-recovery-and-observability.md) — Preserve checkpointed state and the last Published Revision with bounded retries, GitHub-native deduplicated incidents, exact-revision deployment recovery, and fail-closed state repair.
 - [Build the site and Portfolio Maintainer](issues/07-build-the-site-and-maintainer.md) — Implement the protected Minimal-theme portfolio and validated TypeScript maintainer with public-only evidence, additive pin sync, structured generation, and checkpoint-safe generated writes.
 - [Configure Pages and automation](issues/08-configure-pages-and-automation.md) — Pages workflow publishing, scheduled/manual maintainer runs, direct generated-only publication, working pull-request fallback, and required Actions secret/settings are configured and verified.
+- [Choose the Recent Work Digest lifecycle](issues/11-choose-recent-work-digest-lifecycle.md) — Human chose Fresh week only: each successful refresh replaces the visible digest, and an empty week publishes no entries.
 
 ## Not yet specified
 

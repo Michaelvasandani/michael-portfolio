@@ -41,3 +41,10 @@ export function selectDigestEntries(entries: DigestEntry[]): DigestEntry[] {
   for (const entry of entries) unique.set(entry.id, entry);
   return [...unique.values()].sort((left, right) => right.date.localeCompare(left.date)).slice(0, 3);
 }
+
+/** Candidate A: each successful weekly refresh replaces the visible digest. */
+export function replaceDigest(_previous: RecentWorkDigest | null | undefined, entries: DigestEntry[], updatedAt: string): RecentWorkDigest {
+  const digest: RecentWorkDigest = { schemaVersion: 1, updatedAt, entries: selectDigestEntries(entries) };
+  validateDigest(digest);
+  return digest;
+}

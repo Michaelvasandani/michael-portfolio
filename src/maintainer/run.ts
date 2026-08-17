@@ -4,7 +4,7 @@ import { generateDigest, generateProjectProfile } from './generator.ts';
 import { validateGeneratedCandidate } from './contracts.ts';
 import { mergeAppendOnlyProjects } from './contracts.ts';
 import { reconcilePinState } from './state.ts';
-import { selectDigestEntries } from './digest.ts';
+import { replaceDigest } from './digest.ts';
 import { withRetries } from './retry.ts';
 import { validateSiteContent } from './site.ts';
 import { initialMaintainerState } from './state.ts';
@@ -107,10 +107,10 @@ export async function runPortfolioMaintainer(options: MaintainerRunOptions): Pro
   } else {
     const events = await withRetries(() => client.listPublicEvents(options.login), { maxAttempts: 3 });
     const evidence = await gatherEvidence(client, events, options.login, currentState.lastDigestRefreshAt ?? undefined);
-    const digest: RecentWorkDigest = evidence.length > 0
+    const generatedDigest: RecentWorkDigest = evidence.length > 0
       ? await withRetries(() => generateDigest(evidence, { apiKey: options.openAiApiKey ?? process.env.OPENAI_API_KEY ?? '', model: options.openAiModel, fetchImpl: options.fetchImpl }, now), { maxAttempts: 2 })
       : { schemaVersion: 1, updatedAt: now, entries: [] };
-    digest.entries = selectDigestEntries(digest.entries);
+    const digest = replaceDigest(currentGenerated.recentWork, generatedDigest.entries, now);
     nextGenerated = { ...currentGenerated, generatedAt: currentGenerated.generatedAt ?? now, recentWork: digest };
     nextState.lastDigestRefreshAt = now;
     nextState.activityCursor = cursorFor(events, currentState.activityCursor);

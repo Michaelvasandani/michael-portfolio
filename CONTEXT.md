@@ -30,6 +30,10 @@ _Avoid_: Featured repository, selected repo
 The synthesized “What I’ve Been Working On” section produced from Meaningful Activity across inspected repositories.
 _Avoid_: Activity feed, commit list
 
+**Fresh-week Recent Work Digest**:
+A Recent Work Digest whose visible entries represent only the Meaningful Activity found in the current successful refresh; when the refresh finds none, the visible digest is empty.
+_Avoid_: Rolling digest, sticky digest
+
 **Generated Content**:
 Machine-owned Project Profile and Recent Work Digest data produced by the Portfolio Maintainer from Direct Evidence. Generated Content excludes all resume-derived and human-authored material.
 
