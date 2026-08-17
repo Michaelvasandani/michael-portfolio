@@ -106,7 +106,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: read
-      administration: read
       contents: write
       pull-requests: write
     outputs:
