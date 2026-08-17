@@ -1,11 +1,24 @@
 {
   "schemaVersion": 1,
-  "pinSnapshot": [],
-  "representedRepositoryIds": [],
+  "pinSnapshot": [
+    "R_kgDOPu9R_A",
+    "R_kgDOTbzLiA",
+    "R_kgDOTeqbLQ",
+    "R_kgDOTfuvFQ"
+  ],
+  "representedRepositoryIds": [
+    "R_kgDOPu9R_A",
+    "R_kgDOTbzLiA",
+    "R_kgDOTeqbLQ",
+    "R_kgDOTfuvFQ"
+  ],
   "activityCursor": null,
-  "lastPinSyncAt": null,
+  "lastPinSyncAt": "2026-08-17T04:53:06.592Z",
   "lastDigestRefreshAt": null,
-  "checkpoint": null,
+  "checkpoint": {
+    "revision": "530e301e4f1d69b927971c68dc2d28bd3a059eb9",
+    "committedAt": "2026-08-17T04:53:06.592Z"
+  },
   "publishedRevision": null,
   "openIncidentFingerprints": [],
   "openReviewFingerprints": []

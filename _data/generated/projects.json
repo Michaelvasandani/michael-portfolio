@@ -1,5 +1,84 @@
 {
   "schemaVersion": 1,
-  "generatedAt": null,
-  "projects": []
+  "generatedAt": "2026-08-17T04:53:06.592Z",
+  "projects": [
+    {
+      "repositoryId": "R_kgDOPu9R_A",
+      "repository": "Michaelvasandani/clinical-trial-finder",
+      "url": "https://github.com/Michaelvasandani/clinical-trial-finder",
+      "purpose": "Conversational AI system for discovering and understanding clinical trials through natural-language search, patient profile matching, semantic ranking, and trial explanations.",
+      "contribution": "Contributed conversational and LLM functionality, conversation state, patient-matching features, additional data and functionality, a Streamlit frontend, and deployment-related configuration. Also reorganized the project structure and added LangChain functionality.",
+      "technologies": [
+        "Python",
+        "Docker",
+        "FastAPI",
+        "Streamlit",
+        "PostgreSQL",
+        "pgvector",
+        "OpenAI GPT-4",
+        "BioBERT",
+        "ClinicalTrials.gov API",
+        "LangChain"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/clinical-trial-finder/commit/ee8712f791ad6aeafec74139c1ad34b881a0d5cf",
+      "createdAt": "2026-08-17T04:53:06.592Z"
+    },
+    {
+      "repositoryId": "R_kgDOTbzLiA",
+      "repository": "Michaelvasandani/ClosetOS",
+      "url": "https://github.com/Michaelvasandani/ClosetOS",
+      "purpose": "A daily-use wardrobe assistant delivered as a command-line application for managing wardrobe items, generating outfit recommendations, recording wears and ratings, and incorporating learned preferences.",
+      "contribution": "Contributed the TypeScript implementation of the domain model, YAML storage layer, availability and constraint logic, hybrid deterministic/LLM recommendation flow, CLI commands for wardrobe and outfit management, friendly LLM error handling, and a deterministic evaluation harness. The daily loop was verified end to end from adding items through rating an outfit.",
+      "technologies": [
+        "TypeScript",
+        "Node.js 20+",
+        "Anthropic SDK",
+        "commander",
+        "tsx",
+        "YAML",
+        "Vitest",
+        "Biome"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/ClosetOS/commit/bc35ca6591cff457252ae5879b543a939aeb6080",
+      "createdAt": "2026-08-17T04:53:06.592Z"
+    },
+    {
+      "repositoryId": "R_kgDOTeqbLQ",
+      "repository": "Michaelvasandani/Keeping-Up-AI",
+      "url": "https://github.com/Michaelvasandani/Keeping-Up-AI",
+      "purpose": "A Python pipeline that collects AI engineering posts from X, normalizes and deduplicates them, uses AI agents to curate and verify stories, and publishes a searchable static HTML feed.",
+      "contribution": "Built the project’s collection, processing, curation, verification, publishing, state-management, and GitHub Actions workflow components. Added tests for normalization, publishing, and related file operations, along with safeguards for malformed model output, failed pipeline runs, duplicate stories, and concurrent state updates.",
+      "technologies": [
+        "Python",
+        "X API v2",
+        "Anthropic Haiku 4.5",
+        "httpx",
+        "pytest",
+        "GitHub Actions",
+        "GitHub Pages",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/Keeping-Up-AI/commit/de8e79c97d0f5da70a8c7916ed521c38a54d564f",
+      "createdAt": "2026-08-17T04:53:06.592Z"
+    },
+    {
+      "repositoryId": "R_kgDOTfuvFQ",
+      "repository": "Michaelvasandani/Voice-Agent",
+      "url": "https://github.com/Michaelvasandani/Voice-Agent",
+      "purpose": "Backend for a voice agent that supports calendar booking, availability lookup, and post-call summaries.",
+      "contribution": "Implemented Vercel API routes for Google Calendar event creation and availability searches, including input validation and Pacific Time handling. Added a signed post-call webhook with HMAC-SHA256 verification and Resend email summaries, plus error handling and Vitest coverage for key validation and failure cases.",
+      "technologies": [
+        "TypeScript",
+        "Vercel",
+        "Vitest",
+        "Google Calendar API",
+        "Resend",
+        "HMAC-SHA256"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/Voice-Agent/commit/3bb6c5a3a89add36dc5365511bbeac72a49b3a71",
+      "createdAt": "2026-08-17T04:53:06.592Z"
+    }
+  ]
 }
