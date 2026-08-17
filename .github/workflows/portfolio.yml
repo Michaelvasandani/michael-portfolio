@@ -158,6 +158,8 @@ jobs:
           changed=false
           if [ -n "$changed_paths" ]; then changed=true; fi
           requires_pr=false
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
           # Branch protection and active pull-request rulesets take precedence
           # over direct publication. Never weaken either policy here.
