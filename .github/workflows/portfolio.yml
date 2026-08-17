@@ -94,6 +94,7 @@ jobs:
         with:
           name: maintainer-candidate
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 30
           path: |
             _data/generated/projects.json
