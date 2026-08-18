@@ -1,23 +1,30 @@
 {
   "schemaVersion": 1,
   "pinSnapshot": [
-    "R_kgDOPu9R_A",
-    "R_kgDOTbzLiA",
-    "R_kgDOTeqbLQ",
-    "R_kgDOTfuvFQ"
+    "R_kgDOTfuvFQ",
+    "R_kgDOTqinfw",
+    "R_kgDOT404hw",
+    "R_kgDOQALseA",
+    "R_kgDOT7lMFg",
+    "R_kgDOT6m7uQ"
   ],
   "representedRepositoryIds": [
     "R_kgDOPu9R_A",
     "R_kgDOTbzLiA",
     "R_kgDOTeqbLQ",
-    "R_kgDOTfuvFQ"
+    "R_kgDOTfuvFQ",
+    "R_kgDOTqinfw",
+    "R_kgDOT404hw",
+    "R_kgDOQALseA",
+    "R_kgDOT7lMFg",
+    "R_kgDOT6m7uQ"
   ],
   "activityCursor": "17888004906",
-  "lastPinSyncAt": "2026-08-18T01:51:21.632Z",
+  "lastPinSyncAt": "2026-08-18T03:48:35.775Z",
   "lastDigestRefreshAt": "2026-08-17T04:54:57.236Z",
   "checkpoint": {
-    "revision": "5332b7910dadf79bd4e4a22b3b4c39ec19727f34",
-    "committedAt": "2026-08-18T01:51:21.632Z"
+    "revision": "94224f951869018715314bf886a4ab1d54d9281b",
+    "committedAt": "2026-08-18T03:48:35.775Z"
   },
   "publishedRevision": null,
   "openIncidentFingerprints": [],

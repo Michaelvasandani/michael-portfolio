@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-17T04:53:06.592Z",
+  "generatedAt": "2026-08-18T03:48:35.775Z",
   "projects": [
     {
       "repositoryId": "R_kgDOPu9R_A",
@@ -79,6 +79,105 @@
       ],
       "evidenceUrl": "https://github.com/Michaelvasandani/Voice-Agent/commit/3bb6c5a3a89add36dc5365511bbeac72a49b3a71",
       "createdAt": "2026-08-17T04:53:06.592Z"
+    },
+    {
+      "repositoryId": "R_kgDOTqinfw",
+      "repository": "Michaelvasandani/aitb-hackathon",
+      "url": "https://github.com/Michaelvasandani/aitb-hackathon",
+      "purpose": "An AI Trailblazers planning system that turns hackathon inputs such as city, timing, budget, audience, and purpose into a sourced HTML event plan. It includes streamed pipeline activity, saved run permalinks, and a public gallery of plans.",
+      "contribution": "Implemented and iterated on the agentic planning pipeline, validated intake flow, streamed activity log, sandboxed plan rendering, Neon-backed run persistence, permalink viewer, public gallery, and shared navigation. Also added AITB-scoped skills, configurations, and workflows, including Airtable organization lookup.",
+      "technologies": [
+        "Python",
+        "JavaScript",
+        "HTML",
+        "Shell",
+        "Claude Agent SDK",
+        "Vercel",
+        "Neon",
+        "Server-Sent Events (SSE)",
+        "Airtable"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/aitb-hackathon/commit/046979a5021641673764a00d5a95edf8d389c627",
+      "createdAt": "2026-08-18T03:48:35.775Z"
+    },
+    {
+      "repositoryId": "R_kgDOT404hw",
+      "repository": "Michaelvasandani/Larp-code",
+      "url": "https://github.com/Michaelvasandani/Larp-code",
+      "purpose": "A packaged, popup-only Chrome Manifest V3 extension providing callback-free six-digit email OTP sign-in, authenticated member state, display-name editing, and Grovekin presentation features.",
+      "contribution": "Implemented the React/TypeScript popup and event-driven service worker architecture, including worker-owned Supabase sessions and storage, OTP resend cooldowns, credential refresh, popup messaging, idempotent display-name updates, sign-out cleanup, transactional notices, and automated verification through packaged builds and real-Chrome smoke testing.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Chrome Manifest V3",
+        "Supabase",
+        "PLpgSQL",
+        "Vitest",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/Larp-code/commit/722d0cf2446d3556bcb525f4fdb94a7b577c47bb",
+      "createdAt": "2026-08-18T03:48:35.775Z"
+    },
+    {
+      "repositoryId": "R_kgDOQALseA",
+      "repository": "Michaelvasandani/musa-labs",
+      "url": "https://github.com/Michaelvasandani/musa-labs",
+      "purpose": "SafeTrip SF is an AI-powered travel-planning application for San Francisco that generates personalized itineraries while incorporating traveler-safety analysis based on real crime data. It accepts natural-language preferences such as budget, interests, and trip duration; produces hotel and activity recommendations; assigns safety scores; and visualizes routes and higher-risk areas on an interactive map.",
+      "contribution": "The repository documents a multi-agent pipeline comprising intake, itinerary planning, safety analysis, and map-building components, connected through a FastAPI backend and Streamlit frontend. The project includes analysis of 10,129 crime incidents across 41 neighborhoods, a combined planning endpoint, individual agent endpoints, and datasets containing 24 activities and 12 hotels.",
+      "technologies": [
+        "Python",
+        "TypeScript",
+        "HTML",
+        "Shell",
+        "CSS",
+        "JavaScript",
+        "FastAPI",
+        "Streamlit",
+        "OpenAI GPT-4o",
+        "LangGraph",
+        "LangChain",
+        "Pandas",
+        "DataSF API",
+        "Folium",
+        "Streamlit-Folium",
+        "Pydantic"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/musa-labs/commit/343067dac383d62780d6a2494ad74fee3c9d1640",
+      "createdAt": "2026-08-18T03:48:35.775Z"
+    },
+    {
+      "repositoryId": "R_kgDOT7lMFg",
+      "repository": "Michaelvasandani/skill-observer",
+      "url": "https://github.com/Michaelvasandani/skill-observer",
+      "purpose": "A Skill Observer MVP for repository-scoped Codex invocation discovery, invocation capture normalization, investigation, and deterministic signal evaluation, with a local web display and CLI workflow.",
+      "contribution": "Implemented the Skill Observer MVP, including discovery and investigation flows, Codex adapters, signal evaluation, local operation handling, a CLI picker, web display, fixture-based investigation, and supporting tests and completion evidence.",
+      "technologies": [
+        "TypeScript",
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/skill-observer/commit/ab36ceb1142749c67a8627bdd3429a2ade18956c",
+      "createdAt": "2026-08-18T03:48:35.775Z"
+    },
+    {
+      "repositoryId": "R_kgDOT6m7uQ",
+      "repository": "Michaelvasandani/michael-portfolio",
+      "url": "https://github.com/Michaelvasandani/michael-portfolio",
+      "purpose": "A GitHub Pages Minimal-theme portfolio with a TypeScript Portfolio Maintainer that synchronizes public GitHub pins and refreshes a Recent Work digest.",
+      "contribution": "Contributed to building the portfolio site and maintainer, implementing digest lifecycle workflows, and configuring GitHub Pages automation with validation and checkpoint-preserving behavior.",
+      "technologies": [
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "GitHub Pages",
+        "Jekyll-compatible static HTML"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/michael-portfolio/commit/f29200a923866bbfec004303b5a18d0907e2b381",
+      "createdAt": "2026-08-18T03:48:35.775Z"
     }
   ]
 }
