@@ -23,6 +23,7 @@ h3 { margin-bottom: .35rem; font-size: 1.08rem; line-height: 1.35; }
 .hero { display: grid; grid-template-columns: 1.55fr .72fr; gap: 4rem; align-items: end; padding-bottom: 4rem; }
 .eyebrow { margin-bottom: .55rem; color: var(--accent); font-size: .73rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .lede { max-width: 680px; color: var(--muted); font-size: 1.1rem; }
+.agentic-note { width: fit-content; margin: 1.35rem 0 0; padding: .42rem .72rem; border: 1px solid #badbd7; border-radius: 99px; background: var(--accent-soft); color: var(--accent); font-size: .78rem; font-weight: 700; }
 .contact-card { padding-left: 1.5rem; border-left: 2px solid var(--accent); }
 .contact-card strong { display: block; margin-bottom: .6rem; }
 .contact-card a { display: block; width: fit-content; margin: .2rem 0; }

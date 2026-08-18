@@ -17,3 +17,9 @@ test('site renders Project Profiles from the generated projects array', async ()
 
   assert.match(result.html, /{%\s*for project in site\.data\.generated\.projects\.projects\s*%}/);
 });
+
+test('hero identifies the portfolio as agentically maintained', async () => {
+  const result = await validateSiteContent({ root: process.cwd() });
+
+  assert.match(result.html, /class="agentic-note"[^>]*>{{ site\.data\.profile\.agenticNote }}/);
+});

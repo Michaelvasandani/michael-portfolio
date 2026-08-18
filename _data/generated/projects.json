@@ -24,46 +24,6 @@
       "createdAt": "2026-08-17T04:53:06.592Z"
     },
     {
-      "repositoryId": "R_kgDOTbzLiA",
-      "repository": "Michaelvasandani/ClosetOS",
-      "url": "https://github.com/Michaelvasandani/ClosetOS",
-      "purpose": "A daily-use wardrobe assistant delivered as a command-line application for managing wardrobe items, generating outfit recommendations, recording wears and ratings, and incorporating learned preferences.",
-      "contribution": "Contributed the TypeScript implementation of the domain model, YAML storage layer, availability and constraint logic, hybrid deterministic/LLM recommendation flow, CLI commands for wardrobe and outfit management, friendly LLM error handling, and a deterministic evaluation harness. The daily loop was verified end to end from adding items through rating an outfit.",
-      "technologies": [
-        "TypeScript",
-        "Node.js 20+",
-        "Anthropic SDK",
-        "commander",
-        "tsx",
-        "YAML",
-        "Vitest",
-        "Biome"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/ClosetOS/commit/bc35ca6591cff457252ae5879b543a939aeb6080",
-      "createdAt": "2026-08-17T04:53:06.592Z"
-    },
-    {
-      "repositoryId": "R_kgDOTeqbLQ",
-      "repository": "Michaelvasandani/Keeping-Up-AI",
-      "url": "https://github.com/Michaelvasandani/Keeping-Up-AI",
-      "purpose": "A Python pipeline that collects AI engineering posts from X, normalizes and deduplicates them, uses AI agents to curate and verify stories, and publishes a searchable static HTML feed.",
-      "contribution": "Built the project’s collection, processing, curation, verification, publishing, state-management, and GitHub Actions workflow components. Added tests for normalization, publishing, and related file operations, along with safeguards for malformed model output, failed pipeline runs, duplicate stories, and concurrent state updates.",
-      "technologies": [
-        "Python",
-        "X API v2",
-        "Anthropic Haiku 4.5",
-        "httpx",
-        "pytest",
-        "GitHub Actions",
-        "GitHub Pages",
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/Keeping-Up-AI/commit/de8e79c97d0f5da70a8c7916ed521c38a54d564f",
-      "createdAt": "2026-08-17T04:53:06.592Z"
-    },
-    {
       "repositoryId": "R_kgDOTfuvFQ",
       "repository": "Michaelvasandani/Voice-Agent",
       "url": "https://github.com/Michaelvasandani/Voice-Agent",

@@ -1,15 +1,16 @@
 {
   "name": "Michael Sagar Vasandani",
   "shortName": "Michael Vasandani",
-  "eyebrow": "AI engineer · Software builder",
-  "headline": "I build agentic systems that turn slow, manual work into reliable workflows.",
-  "intro": "I’m Michael Vasandani, a UC San Diego Data Science graduate working across AI agents, developer tooling, and production software. I like taking an ambiguous operational problem to a workflow people can trust and use.",
+  "eyebrow": "AI engineer · Product builder",
+  "headline": "I chase interesting AI problems and ship what I find.",
+  "intro": "I’m Michael Vasandani, a UC San Diego Data Science graduate and product builder working across the AI stack. I like taking ambitious ideas from prototype to reliable products people can use.",
+  "agenticNote": "This is an agentic portfolio: Project Profiles and Recent Work are maintained from public GitHub evidence.",
   "contact": {
     "email": "michaelvasandani6@gmail.com",
     "github": "https://github.com/Michaelvasandani",
     "linkedin": "https://linkedin.com/in/michael-vasandani"
   },
-  "about": "I’m interested in the seam between capable models and dependable products: clear interfaces, grounded retrieval, useful evaluation, and the engineering that lets people use an AI system with confidence.",
+  "about": "I’m interested in AI engineering and what it takes to ship new model capabilities as real-world products. I’m especially curious about evaluation, memory, and the systems that make AI reliable—and about how this technology could reshape the way we work, create, and live.",
   "education": {
     "institution": "University of California, San Diego",
     "degree": "Bachelor of Science in Data Science",
@@ -25,10 +26,10 @@
       "dates": "June 2026 – Present",
       "summary": "Production agents, internal AI platforms, and developer workflows.",
       "outcomes": [
-        "Cut bug-fix turnaround by 60% by engineering a production multi-agent Crashlytics remediation workflow with GitHub Agentic Workflows for automated investigation, fix generation, and human-in-the-loop validation.",
-        "Enabled 40+ users to self-serve internal questions by building a LangChain/LangGraph AI investigation platform with MCP tools, RAG memory, a FastAPI REST API, and AWS CloudWatch/DynamoDB integrations.",
+        "Engineered a production multi-agent Crashlytics remediation workflow with GitHub Agentic Workflows for investigation, fix generation, and human-in-the-loop validation, cutting high-severity crash resolution from 3–4 days to about 1 day.",
+        "Built an internal AI copilot for 40+ product and engineering users to query ticket, PR, and feature context across internal systems using LangGraph, MCP tools, RAG-based memory, AWS CloudWatch, and DynamoDB.",
         "Increased internal AI adoption by 70% by launching a reusable agent marketplace with CI/CD validation and versioning.",
-        "Saved 10+ developer hours weekly with an agentic workflow that detects documentation drift and opens pull requests."
+        "Automated documentation maintenance with an agentic workflow that detects drift and submits fixes, saving 10+ hours weekly."
       ]
     },
     {
@@ -40,7 +41,7 @@
       "outcomes": [
         "Cut content authoring time by 85% with an LLM generation/compliance pipeline using FastAPI, MongoDB, and Ollama.",
         "Integrated the system into Unreal Engine via C++ components, enabling real-time API calls and bulk dialogue importing.",
-        "Reduced token usage and processing time by 70% by implementing semantic retrieval over prior dialogue trees in MongoDB."
+        "Reduced LLM token usage and processing time by 70% using embedding-based retrieval over prior dialogue trees."
       ]
     },
     {
@@ -73,7 +74,8 @@
       "summary": "Analytics and natural-language codebase tooling.",
       "outcomes": [
         "Architected an internal GitHub analytics tool on AWS Lambda and DynamoDB, cutting leadership review time by 90%.",
-        "Engineered an LLM pipeline with RAG and Pinecone embeddings for natural-language codebase queries."
+        "Engineered an LLM pipeline with RAG and Pinecone embeddings for natural-language codebase queries.",
+        "Configured a GitHub Actions CI/CD pipeline with automated unit tests and security vulnerability scanning."
       ]
     }
   ],
