@@ -11,3 +11,9 @@ test('site content contains the Outcome Funnel sections and never exposes the re
   assert.match(result.html, /Recent work/);
   assert.doesNotMatch(result.html, /858\D*319\D*8367/);
 });
+
+test('site renders Project Profiles from the generated projects array', async () => {
+  const result = await validateSiteContent({ root: process.cwd() });
+
+  assert.match(result.html, /{%\s*for project in site\.data\.generated\.projects\.projects\s*%}/);
+});

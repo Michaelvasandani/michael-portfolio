@@ -80,13 +80,13 @@ description: AI engineer building reliable agentic systems and developer tools.
               <div><p>{{ project.purpose }}</p><p class="proof">{{ project.outcome }}</p></div>
             </article>
             {% endfor %}
-            {% for project in site.data.generated.projects %}
+            {% for project in site.data.generated.projects.projects %}
             <article class="project-item generated-item">
               <div class="project-meta"><p class="eyebrow">Generated · Pinned Project</p><h3>{{ project.repository }}</h3>{% for technology in project.technologies %}<span class="tag">{{ technology }}</span>{% endfor %}</div>
               <div><p>{{ project.purpose }}</p><p class="proof">{{ project.contribution }}</p><a href="{{ project.url }}">Inspect public evidence →</a></div>
             </article>
             {% endfor %}
-            {% if site.data.generated.projects.size == 0 %}<p class="empty-state">New public Pinned Projects will appear here after the Portfolio Maintainer verifies their evidence.</p>{% endif %}
+            {% if site.data.generated.projects.projects.size == 0 %}<p class="empty-state">New public Pinned Projects will appear here after the Portfolio Maintainer verifies their evidence.</p>{% endif %}
           </div>
         </section>
 
