@@ -1,52 +1,5 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-17T04:54:57.236Z",
-  "entries": [
-    {
-      "id": "larp-code-release-qualification-and-beta",
-      "date": "2026-08-16",
-      "headline": "Hardened Larp-code release qualification and prepared a private beta candidate",
-      "summary": "Built and exercised release-qualification checks, publication-package assembly, recovery rehearsal, scheduled maintenance, production privilege restrictions, and a private-beta candidate archive for the Manifest V3 extension. The repository also documents the packaged popup/service-worker verification flow and launch checklist.",
-      "technologies": [
-        "TypeScript",
-        "JavaScript",
-        "PLpgSQL",
-        "React",
-        "Vite",
-        "Supabase",
-        "Chrome Extensions"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/Larp-code/commit/722d0cf2446d3556bcb525f4fdb94a7b577c47bb"
-    },
-    {
-      "id": "portfolio-website-dossier-v2",
-      "date": "2026-08-15",
-      "headline": "Migrated the portfolio’s active publication flow to dossier v2",
-      "summary": "Implemented the dossier v2 publication migration, exposed verified publication status, qualified the redesigned renderer, and added evidence-bound experience stories and verified project artifacts. The work includes renderer, publication-store, database migration, browser tests, and acceptance evidence.",
-      "technologies": [
-        "TypeScript",
-        "React",
-        "Next.js",
-        "Drizzle ORM",
-        "PostgreSQL",
-        "Playwright",
-        "Vercel"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/Portfolio-website/commit/4613d43c114d6580d715deaac55c05cdcb025a9e"
-    },
-    {
-      "id": "agent-visualizer-trace-explorer",
-      "date": "2026-08-12",
-      "headline": "Built a browser-based Trace Explorer for Agent Tracer",
-      "summary": "Added the loopback Trace Explorer, session and run management, causal activity-graph projection, browser navigation, and related tests. The documented slice passively observes a shared Codex App Server and reconstructs live and historical trace activity without controlling the observed run.",
-      "technologies": [
-        "TypeScript",
-        "JavaScript",
-        "Node.js",
-        "WebSocket",
-        "Codex App Server"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/agent-visualizer/commit/2a57ff6b5c335ffcd262defd7493d534a52b51b1"
-    }
-  ]
+  "updatedAt": "2026-08-24T03:27:49.323Z",
+  "entries": []
 }
