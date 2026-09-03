@@ -18,11 +18,11 @@
     "R_kgDOT6m7uQ"
   ],
   "activityCursor": "19159089414",
-  "lastPinSyncAt": "2026-09-03T04:35:08.837Z",
+  "lastPinSyncAt": "2026-09-03T11:16:26.535Z",
   "lastDigestRefreshAt": "2026-08-31T08:44:17.139Z",
   "checkpoint": {
-    "revision": "8126fce25f6e4a91d8682872c801aa6ab878aa23",
-    "committedAt": "2026-09-03T04:35:08.837Z"
+    "revision": "ab740a9a7bd1410798352f1309ae56ed1125366c",
+    "committedAt": "2026-09-03T11:16:26.535Z"
   },
   "publishedRevision": null,
   "openIncidentFingerprints": [],
