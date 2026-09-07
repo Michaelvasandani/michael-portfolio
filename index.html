@@ -1,119 +1,151 @@
----
-layout: null
-title: Michael Vasandani · AI Engineer
-description: AI engineer building reliable agentic systems and developer tools.
----
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.description }}">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <title>{{ page.title }}</title>
+    <meta name="description" content="A warm, editorial portfolio for AI engineer Michael Vasandani.">
+    <meta name="theme-color" content="#f3efe6">
+    <title>Michael Vasandani — AI Engineer</title>
+    <style>
+      :root { --paper:#f3efe6; --ink:#25231f; --muted:#6e685e; --line:#cfc8ba; --red:#a9432f; --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --serif:Iowan Old Style,"Palatino Linotype",Palatino,Georgia,serif; }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 var(--sans); }
+      a { color:inherit; text-decoration-color:var(--line); text-underline-offset:.22em; }
+      a:hover { text-decoration-color:var(--red); }
+      .skip { position:absolute; left:-999px; top:1rem; padding:.6rem .85rem; background:var(--ink); color:var(--paper); z-index:10; }
+      .skip:focus { left:1rem; }
+      .shell { width:min(100% - 2.5rem,920px); margin:0 auto; }
+      .masthead { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:1.5rem 0; border-bottom:1px solid var(--line); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; }
+      .masthead strong { font-weight:650; }
+      nav { display:flex; gap:1.1rem; flex-wrap:wrap; }
+      nav a { text-decoration:none; color:var(--muted); }
+      nav a:hover { color:var(--ink); }
+      .hero { min-height:78vh; display:grid; grid-template-columns:1.35fr .65fr; align-items:center; gap:4rem; padding:7rem 0 5rem; }
+      .kicker { margin:0 0 1.1rem; color:var(--red); font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+      h1 { max-width:700px; margin:0; font:500 clamp(3.25rem,8vw,6.7rem)/.9 var(--serif); letter-spacing:-.055em; }
+      .hero-copy { max-width:610px; margin:2rem 0 0; font:1.16rem/1.65 var(--serif); }
+      .hero-links { display:flex; gap:1rem; margin-top:1.8rem; font-size:.88rem; }
+      .mark { aspect-ratio:1; position:relative; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; color:var(--red); font:italic 1rem var(--serif); transform:rotate(5deg); }
+      .mark::before,.mark::after { content:""; position:absolute; inset:12%; border:1px solid currentColor; border-radius:48% 52% 44% 56%; transform:rotate(18deg); opacity:.45; }
+      .mark::after { inset:25%; transform:rotate(-24deg); }
+      section { scroll-margin-top:1rem; display:grid; grid-template-columns:150px 1fr; gap:3rem; padding:5rem 0; border-top:1px solid var(--line); }
+      .section-label { margin:0; color:var(--muted); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; }
+      h2 { margin:0 0 1.4rem; font:500 clamp(2.1rem,5vw,3.7rem)/1 var(--serif); letter-spacing:-.035em; }
+      .large { margin:0; font:1.42rem/1.55 var(--serif); }
+      .education { margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:2rem; color:var(--muted); font-size:.88rem; }
+      .education strong { color:var(--ink); font-weight:600; }
+      .role { display:grid; grid-template-columns:1fr auto; gap:1rem 2rem; padding:1.5rem 0; border-top:1px solid var(--line); }
+      .role:first-of-type { border-top:0; padding-top:0; }
+      .role h3 { margin:0; font:600 1rem/1.4 var(--sans); }
+      .role p { grid-column:1; margin:.28rem 0 0; max-width:620px; color:var(--muted); }
+      .role time { grid-column:2; grid-row:1; color:var(--muted); font-size:.78rem; white-space:nowrap; }
+      .empty-log { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+      .empty-log article { min-height:190px; padding:1.5rem; background:var(--paper); }
+      .empty-log h3 { margin:0 0 .75rem; font:500 1.45rem var(--serif); }
+      .empty-log p { margin:0; color:var(--muted); }
+      .status { display:inline-block; margin-top:2rem; color:var(--red); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; }
+      .notes { list-style:none; padding:0; margin:0; }
+      .notes li { display:grid; grid-template-columns:5rem 1fr auto; gap:1rem; align-items:baseline; padding:1.05rem 0; border-top:1px solid var(--line); }
+      .notes li:first-child { border-top:0; }
+      .notes span,.notes small { color:var(--muted); font-size:.75rem; }
+      .notes strong { font:500 1.18rem var(--serif); }
+      .music-card { display:grid; grid-template-columns:210px 1fr; gap:2.5rem; align-items:center; }
+      .record { aspect-ratio:1; border-radius:50%; background:repeating-radial-gradient(circle,#23211e 0 3px,#34312d 4px 5px,#23211e 6px 10px); display:grid; place-items:center; box-shadow:0 10px 30px #312a1c24; }
+      .record::after { content:"MV"; width:34%; aspect-ratio:1; display:grid; place-items:center; border-radius:50%; background:var(--red); color:var(--paper); font:600 .75rem var(--sans); }
+      .music-card p { color:var(--muted); max-width:480px; }
+      footer { display:flex; justify-content:space-between; gap:2rem; padding:2rem 0 4rem; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; }
+      @media (max-width:700px) {
+        .masthead { align-items:flex-start; }
+        nav { max-width:220px; justify-content:flex-end; }
+        .hero { min-height:auto; grid-template-columns:1fr; gap:2rem; padding:5.5rem 0 4rem; }
+        .mark { width:150px; justify-self:end; }
+        section { grid-template-columns:1fr; gap:1.2rem; padding:3.5rem 0; }
+        .education,.music-card { display:block; }
+        .education span { display:block; margin-top:.5rem; }
+        .empty-log { grid-template-columns:1fr; }
+        .notes li { grid-template-columns:3rem 1fr; }
+        .notes small { display:none; }
+        .record { width:160px; margin-bottom:2rem; }
+      }
+      @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    </style>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="site-shell">
-      <header class="hero" id="top">
-        <div class="hero-copy">
-          <p class="eyebrow">{{ site.data.profile.eyebrow }}</p>
-          <h1>{{ site.data.profile.headline }}</h1>
-          <p class="lede">{{ site.data.profile.intro }}</p>
-          <p class="agentic-note">{{ site.data.profile.agenticNote }}</p>
-        </div>
-        <aside class="contact-card" aria-label="Contact links">
-          <strong>{{ site.data.profile.shortName }}</strong>
-          <a href="mailto:{{ site.data.profile.contact.email }}">Email</a>
-          <a href="{{ site.data.profile.contact.github }}">GitHub</a>
-          <a href="{{ site.data.profile.contact.linkedin }}">LinkedIn</a>
-        </aside>
+    <a class="skip" href="#about">Skip to content</a>
+    <div class="shell">
+      <header class="masthead" id="top">
+        <strong>Michael Vasandani</strong>
+        <nav aria-label="Primary navigation">
+          <a href="#about">About</a><a href="#experience">Experience</a><a href="#recent-reads">Reads</a><a href="#thoughts">Thoughts</a><a href="#music">Music</a>
+        </nav>
       </header>
 
-      <main id="main">
-        <section class="section about-section" id="about" aria-labelledby="about-title">
-          <h2 id="about-title">About me</h2>
-          <div class="section-body">
-            <p class="about-lede">{{ site.data.profile.about }}</p>
-            <div class="about-grid">
-              <article>
-                <p class="eyebrow">Education</p>
-                <h3>{{ site.data.profile.education.degree }}</h3>
-                <p>{{ site.data.profile.education.institution }} · {{ site.data.profile.education.detail }}</p>
-                <p class="muted"><strong>Coursework:</strong> {{ site.data.profile.education.coursework | join: ', ' }}</p>
-              </article>
-              <article>
-                <p class="eyebrow">Hobbies</p>
-                <h3>Curiosity outside the roadmap</h3>
-                <p>{{ site.data.profile.hobbies }}</p>
-              </article>
+      <main>
+        <div class="hero">
+          <div>
+            <p class="kicker">AI engineer · Product builder</p>
+            <h1>Building useful things at the edge of AI.</h1>
+            <p class="hero-copy">I’m Michael, a UC San Diego Data Science graduate working across the AI stack—from prototypes to reliable systems people can use.</p>
+            <div class="hero-links"><a href="mailto:michaelvasandani6@gmail.com">Email</a><a href="https://github.com/Michaelvasandani">GitHub</a><a href="https://linkedin.com/in/michael-vasandani">LinkedIn</a></div>
+          </div>
+          <div class="mark" aria-hidden="true">San Diego · 2026</div>
+        </div>
+
+        <section id="about" aria-labelledby="about-title">
+          <p class="section-label">01 / About me</p>
+          <div>
+            <h2 id="about-title">Curious about what makes AI reliable.</h2>
+            <p class="large">I’m interested in AI engineering and what it takes to turn new model capabilities into real-world products. I keep returning to evaluation, memory, and the systems that help people trust what they build.</p>
+            <div class="education"><strong>B.S. Data Science · UC San Diego</strong><span>GPA 3.82 · June 2026</span></div>
+          </div>
+        </section>
+
+        <section id="experience" aria-labelledby="experience-title">
+          <p class="section-label">02 / Experience</p>
+          <div>
+            <h2 id="experience-title">Where I’ve worked.</h2>
+            <article class="role"><h3>AI Engineer Intern · ResMed</h3><time>Jun 2026 — Now</time><p>Building production agents, internal AI platforms, and developer workflows—including a crash-remediation system that cut turnaround by 60%.</p></article>
+            <article class="role"><h3>Software Engineer — AI Intern · Qualcomm Institute</h3><time>Sep 2025 — May 2026</time><p>Built LLM pipelines and Unreal Engine integrations, cutting content authoring time by 85%.</p></article>
+            <article class="role"><h3>Research Assistant · Smarr Lab</h3><time>Apr 2025 — May 2026</time><p>Built knowledge systems and accelerated an ETL pipeline 7× across more than 700 million rows.</p></article>
+            <article class="role"><h3>Software Engineer Intern · Boost Health Labs</h3><time>Jun — Sep 2025</time><p>Shipped full-stack product work that increased website engagement by 45%.</p></article>
+            <article class="role"><h3>Software Engineer Intern · TipTop Technologies</h3><time>Mar — Jun 2025</time><p>Built cloud analytics and natural-language codebase tools, reducing leadership review time by 90%.</p></article>
+          </div>
+        </section>
+
+        <section id="recent-reads" aria-labelledby="reads-title">
+          <p class="section-label">03 / Recent reads</p>
+          <div>
+            <h2 id="reads-title">The reading shelf.</h2>
+            <div class="empty-log">
+              <article><h3>What I’m reading</h3><p>Reserved for books, papers, and essays I want to recommend.</p><span class="status">First entry coming soon</span></article>
+              <article><h3>Recurring subjects</h3><p>AI systems, product craft, data, biology, and how tools change the way people work.</p><span class="status">Living list</span></article>
             </div>
           </div>
         </section>
 
-        <section class="section" id="experience" aria-labelledby="experience-title">
-          <h2 id="experience-title">Experience</h2>
-          <div class="section-body">
-            {% for role in site.data.profile.experience %}
-            <article class="experience-item">
-              <div class="experience-heading">
-                <div>
-                  <h3>{{ role.role }} <span class="at">·</span> {{ role.company }}</h3>
-                  <p class="muted">{{ role.summary }}</p>
-                </div>
-                <p class="dates">{{ role.dates }}</p>
-              </div>
-              <ul>
-                {% for outcome in role.outcomes %}<li>{{ outcome }}</li>{% endfor %}
-              </ul>
-            </article>
-            {% endfor %}
+        <section id="thoughts" aria-labelledby="thoughts-title">
+          <p class="section-label">04 / Thoughts</p>
+          <div>
+            <h2 id="thoughts-title">Notes in progress.</h2>
+            <ol class="notes">
+              <li><span>001</span><strong>Reliable AI is a product problem</strong><small>Draft theme</small></li>
+              <li><span>002</span><strong>The useful layer above model capability</strong><small>Draft theme</small></li>
+              <li><span>003</span><strong>Learning by building small systems</strong><small>Draft theme</small></li>
+            </ol>
           </div>
         </section>
 
-        <section class="section" id="projects" aria-labelledby="projects-title">
-          <h2 id="projects-title">Projects</h2>
-          <div class="section-body">
-            <p class="section-note">A few systems I’ve built, with outcomes kept next to the work that produced them.</p>
-            {% for project in site.data.profile.projects %}
-            <article class="project-item">
-              <div class="project-meta"><p class="eyebrow">{{ project.kind }}</p><h3>{{ project.name }}</h3>{% for technology in project.technologies %}<span class="tag">{{ technology }}</span>{% endfor %}</div>
-              <div><p>{{ project.purpose }}</p><p class="proof">{{ project.outcome }}</p></div>
-            </article>
-            {% endfor %}
-            {% for project in site.data.generated.projects.projects %}
-            <article class="project-item generated-item">
-              <div class="project-meta"><p class="eyebrow">Generated · Pinned Project</p><h3>{{ project.repository }}</h3>{% for technology in project.technologies %}<span class="tag">{{ technology }}</span>{% endfor %}</div>
-              <div><p>{{ project.purpose }}</p><p class="proof">{{ project.contribution }}</p><a href="{{ project.url }}">Inspect public evidence →</a></div>
-            </article>
-            {% endfor %}
-            {% if site.data.generated.projects.projects.size == 0 %}<p class="empty-state">New public Pinned Projects will appear here after the Portfolio Maintainer verifies their evidence.</p>{% endif %}
-          </div>
-        </section>
-
-        <section class="section" id="recent-work" aria-labelledby="recent-title">
-          <h2 id="recent-title">Recent work</h2>
-          <div class="section-body">
-            <p class="section-note">A generated Recent Work Digest, refreshed from meaningful public GitHub activity.</p>
-            {% for entry in site.data.generated.recent-work.entries %}
-            <article class="digest-item">
-              <time datetime="{{ entry.date }}">{{ entry.date | date: "%b %-d, %Y" }}</time>
-              <div><h3>{{ entry.headline }}</h3><p>{{ entry.summary }}</p><p class="proof"><a href="{{ entry.evidenceUrl }}">View public evidence →</a>{% if entry.technologies.size > 0 %} · {{ entry.technologies | join: ', ' }}{% endif %}</p></div>
-            </article>
-            {% endfor %}
-            {% if site.data.generated.recent-work.entries.size == 0 %}<p class="empty-state">The first digest will appear after a verified weekly refresh.</p>{% endif %}
-          </div>
-        </section>
-
-        <section class="section skills-section" id="skills" aria-labelledby="skills-title">
-          <h2 id="skills-title">Technical toolkit</h2>
-          <div class="section-body skills-grid">
-            {% for category in site.data.profile.skills %}<div><p class="eyebrow">{{ category[0] }}</p><p>{{ category[1] | join: ' · ' }}</p></div>{% endfor %}
+        <section id="music" aria-labelledby="music-title">
+          <p class="section-label">05 / Music</p>
+          <div class="music-card">
+            <div class="record" aria-hidden="true"></div>
+            <div><h2 id="music-title">What’s on repeat.</h2><p>A future listening log for the albums, artists, and tracks filling the space between builds.</p><span class="status">Playlist coming soon</span></div>
           </div>
         </section>
       </main>
 
-      <footer class="footer"><p>{{ site.data.profile.shortName }} · <a href="#top">Back to top ↑</a></p><p class="muted">Resume-derived content is human-authored; generated Projects and Recent Work are evidence-bound.</p></footer>
+      <footer><span>Michael Vasandani · San Diego, California</span><a href="#top">Back to top ↑</a></footer>
     </div>
   </body>
 </html>

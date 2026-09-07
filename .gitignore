@@ -1,8 +1,0 @@
-# Local credentials
-.env
-
-# Node and generated diagnostics
-node_modules/
-coverage/
-dist/
-.DS_Store
