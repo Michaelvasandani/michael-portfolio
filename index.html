@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Michael Vasandani is an AI engineer and product builder based in San Diego.">
     <meta name="theme-color" content="#f3efe6">
-    <title>Michael Vasandani — AI Engineer</title>
+    <title>Michael Sagar Vasandani — AI Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
@@ -20,13 +20,12 @@
         --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       }
       * { box-sizing:border-box; }
-      html,body { height:100%; }
       body {
-        height:100dvh;
+        min-height:100dvh;
         margin:0;
         overflow:hidden;
-        display:grid;
-        place-items:center;
+        display:flex;
+        flex-direction:column;
         color:var(--ink);
         background:var(--paper);
         font:16px/1.55 var(--sans);
@@ -36,9 +35,10 @@
       a:focus-visible { outline:2px solid var(--red); outline-offset:4px; }
       .skip { position:absolute; left:-999px; top:1rem; padding:.55rem .8rem; background:var(--ink); color:var(--paper); }
       .skip:focus { left:1rem; }
+      .header-inner { width:min(100% - 2.5rem,960px); margin:0 auto; padding:.9rem 0 .75rem; }
       .profile {
         width:min(100% - 2.5rem,760px);
-        max-height:100%;
+        margin:auto;
         padding:clamp(1.25rem,4vh,3rem) 0;
       }
       h1 {
@@ -48,32 +48,10 @@
         font-weight:400;
         line-height:1;
         letter-spacing:-.025em;
+        text-align:center;
       }
-      .activity { margin:clamp(1.15rem,2.8vh,2rem) 0; }
-      .activity-heading { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:.7rem; }
-      .activity-heading h2 { margin:0; font-size:.72rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
-      .activity-heading a { color:var(--muted); font-size:.72rem; }
-      .activity-card { padding:.9rem; border:1px solid var(--line); background:rgba(255,255,255,.18); }
-      .activity-grid {
-        display:grid;
-        grid-auto-flow:column;
-        grid-template-rows:repeat(7,1fr);
-        gap:4px;
-        width:100%;
-        aspect-ratio:4.1/1;
-      }
-      .day { min-width:0; border-radius:2px; background:#ddd6ca; }
-      .day[data-level="1"] { background:#d9b9ae; }
-      .day[data-level="2"] { background:#c78572; }
-      .day[data-level="3"] { background:#ad513b; }
-      .day[data-level="4"] { background:#7f2f20; }
-      .activity-meta { display:flex; justify-content:space-between; gap:1rem; margin-top:.65rem; color:var(--muted); font-size:.68rem; }
-      .legend { display:flex; align-items:center; gap:4px; }
-      .legend i { width:8px; height:8px; border-radius:2px; background:#ddd6ca; }
-      .legend i:nth-of-type(2) { background:#d9b9ae; }
-      .legend i:nth-of-type(3) { background:#c78572; }
-      .legend i:nth-of-type(4) { background:#ad513b; }
-      .legend i:nth-of-type(5) { background:#7f2f20; }
+      .activity { display:grid; margin:clamp(1rem,2.5vh,1.65rem) 0; place-items:center; }
+      .activity-gif { display:block; width:clamp(112px,20vw,152px); height:auto; border:1px solid var(--line); }
       .copy { margin-top:clamp(1.2rem,2.7vh,2rem); }
       .copy p { margin:0 0 .9rem; font-size:clamp(1.02rem,2vw,1.22rem); line-height:1.55; letter-spacing:-.012em; }
       .copy p:last-child { margin-bottom:0; }
@@ -85,58 +63,47 @@
         font-weight:650;
       }
       .social { display:flex; gap:1.3rem; margin-top:clamp(1.1rem,2.7vh,1.9rem); font-size:.9rem; }
-      .page-nav {
-        display:flex;
-        flex-wrap:wrap;
-        gap:.55rem 1.5rem;
-        margin-top:clamp(1.05rem,2.5vh,1.7rem);
-        padding-top:1rem;
-        border-top:1px solid var(--line);
-      }
+      .page-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:.55rem 1.45rem; }
       .page-nav a { color:var(--muted); font-size:.76rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
       .page-nav a[aria-current="page"],.page-nav a:hover { color:var(--ink); }
       @media (max-width:520px) {
         .profile { width:min(100% - 2rem,760px); padding:1rem 0; }
         h1 { font-size:2.55rem; }
-        .activity { margin:1rem 0; }
-        .activity-card { padding:.65rem; }
-        .activity-grid { gap:3px; aspect-ratio:3/1; }
-        .activity-meta { margin-top:.45rem; }
-        .legend span { display:none; }
+        .activity { margin:.85rem 0; }
         .copy { margin-top:1rem; }
         .copy p { font-size:.98rem; line-height:1.48; margin-bottom:.65rem; }
         .social { margin-top:.9rem; }
-        .page-nav { margin-top:.9rem; padding-top:.8rem; gap:.4rem 1rem; }
+        .header-inner { width:min(100% - 2rem,960px); }
+        .page-nav { gap:.4rem 1rem; }
       }
       @media (max-height:660px) {
         .profile { padding:.75rem 0; }
-        .activity { margin:.7rem 0; }
-        .activity-grid { aspect-ratio:5/1; }
+        .activity { margin:.6rem 0; }
+        .activity-gif { width:104px; }
         .copy { margin-top:.7rem; }
         .copy p { margin-bottom:.45rem; font-size:.96rem; }
-        .social,.page-nav { margin-top:.65rem; }
+        .social { margin-top:.65rem; }
       }
     </style>
   </head>
   <body>
     <a class="skip" href="#about">Skip to about me</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <nav class="page-nav" aria-label="Portfolio pages">
+          <a href="index.html" aria-current="page">About</a>
+          <a href="experience/index.html">Experience</a>
+          <a href="recent-reads.html">Reads</a>
+          <a href="thoughts.html">Thoughts</a>
+          <a href="music.html">Music</a>
+        </nav>
+      </div>
+    </header>
     <main class="profile" id="about">
-      <h1>Michael Vasandani</h1>
+      <h1>Michael Sagar Vasandani</h1>
 
-      <section class="activity" aria-labelledby="activity-title">
-        <div class="activity-heading">
-          <h2 id="activity-title">GitHub activity</h2>
-          <a href="https://github.com/Michaelvasandani">View profile ↗</a>
-        </div>
-        <div class="activity-card">
-          <div class="activity-grid" role="img" aria-label="GitHub contribution activity"></div>
-          <div class="activity-meta">
-            <span id="activity-status">Recent contributions</span>
-            <span class="legend" aria-label="Less to more activity">
-              <span>Less</span><i></i><i></i><i></i><i></i><i></i><span>More</span>
-            </span>
-          </div>
-        </div>
+      <section class="activity" aria-label="Animated illustration">
+        <img class="activity-gif" src="assets/home-cat-transparent.png" alt="Cat holding a snack bag" width="1254" height="1254">
       </section>
 
       <div class="copy">
@@ -149,51 +116,7 @@
         <a href="https://github.com/Michaelvasandani" rel="me">GitHub</a>
         <a href="https://linkedin.com/in/michael-vasandani" rel="me">LinkedIn</a>
       </div>
-
-      <nav class="page-nav" aria-label="Portfolio pages">
-        <a href="index.html" aria-current="page">About</a>
-        <a href="experience/index.html">Experience</a>
-        <a href="recent-reads.html">Reads</a>
-        <a href="thoughts.html">Thoughts</a>
-        <a href="music.html">Music</a>
-      </nav>
     </main>
 
-    <script>
-      const grid = document.querySelector('.activity-grid');
-      const status = document.querySelector('#activity-status');
-      const dayCount = 140;
-
-      function renderActivity(days) {
-        grid.replaceChildren();
-        days.slice(-dayCount).forEach((day) => {
-          const cell = document.createElement('span');
-          const count = Number(day.count || 0);
-          const level = day.level !== undefined
-            ? Number(day.level)
-            : count === 0 ? 0 : count < 3 ? 1 : count < 6 ? 2 : count < 10 ? 3 : 4;
-          cell.className = 'day';
-          cell.dataset.level = String(level);
-          cell.title = `${count} contribution${count === 1 ? '' : 's'} on ${day.date}`;
-          grid.append(cell);
-        });
-      }
-
-      const fallback = Array.from({ length:dayCount }, (_,index) => ({
-        count:[0,0,1,0,2,0,0,1,3,0,1,0,4,2,0,1,0,0,2,1][index % 20],
-        date:'recent activity'
-      }));
-      renderActivity(fallback);
-
-      fetch('https://github-contributions-api.jogruber.de/v4/Michaelvasandani?y=last')
-        .then((response) => response.ok ? response.json() : Promise.reject())
-        .then((data) => {
-          if (!Array.isArray(data.contributions)) return;
-          renderActivity(data.contributions);
-          const total = data.total && (data.total.lastYear || Object.values(data.total)[0]);
-          if (total) status.textContent = `${total.toLocaleString()} contributions in the last year`;
-        })
-        .catch(() => { status.textContent = 'Recent activity snapshot'; });
-    </script>
   </body>
 </html>
