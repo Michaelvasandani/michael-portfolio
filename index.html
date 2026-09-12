@@ -9,82 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --paper:#f3efe6;
-        --ink:#25231f;
-        --muted:#716b61;
-        --line:#cec6b8;
-        --red:#a9432f;
-        --red-soft:#ead6cf;
-        --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      }
-      * { box-sizing:border-box; }
-      body {
-        min-height:100dvh;
-        margin:0;
-        overflow:hidden;
-        display:flex;
-        flex-direction:column;
-        color:var(--ink);
-        background:var(--paper);
-        font:16px/1.55 var(--sans);
-      }
-      a { color:inherit; text-underline-offset:.24em; text-decoration-color:var(--line); }
-      a:hover { text-decoration-color:var(--red); }
-      a:focus-visible { outline:2px solid var(--red); outline-offset:4px; }
-      .skip { position:absolute; left:-999px; top:1rem; padding:.55rem .8rem; background:var(--ink); color:var(--paper); }
-      .skip:focus { left:1rem; }
-      .header-inner { width:min(100% - 2.5rem,960px); margin:0 auto; padding:.9rem 0 .75rem; }
-      .profile {
-        width:min(100% - 2.5rem,760px);
-        margin:auto;
-        padding:clamp(1.25rem,4vh,3rem) 0;
-      }
-      h1 {
-        margin:0;
-        font-family:"Kalam",cursive;
-        font-size:clamp(2.65rem,5vw,3.6rem);
-        font-weight:400;
-        line-height:1;
-        letter-spacing:-.025em;
-        text-align:center;
-      }
-      .activity { display:grid; margin:clamp(1rem,2.5vh,1.65rem) 0; place-items:center; }
-      .activity-gif { display:block; width:clamp(112px,20vw,152px); height:auto; border:1px solid var(--line); }
-      .copy { margin-top:clamp(1.2rem,2.7vh,2rem); }
-      .copy p { margin:0 0 .9rem; font-size:clamp(1.02rem,2vw,1.22rem); line-height:1.55; letter-spacing:-.012em; }
-      .copy p:last-child { margin-bottom:0; }
-      .highlight {
-        padding:.05em .22em;
-        border-radius:.18em;
-        background:var(--red-soft);
-        color:#833522;
-        font-weight:650;
-      }
-      .social { display:flex; gap:1.3rem; margin-top:clamp(1.1rem,2.7vh,1.9rem); font-size:.9rem; }
-      .page-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:.55rem 1.45rem; }
-      .page-nav a { color:var(--muted); font-size:.76rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
-      .page-nav a[aria-current="page"],.page-nav a:hover { color:var(--ink); }
-      @media (max-width:520px) {
-        .profile { width:min(100% - 2rem,760px); padding:1rem 0; }
-        h1 { font-size:2.55rem; }
-        .activity { margin:.85rem 0; }
-        .copy { margin-top:1rem; }
-        .copy p { font-size:.98rem; line-height:1.48; margin-bottom:.65rem; }
-        .social { margin-top:.9rem; }
-        .header-inner { width:min(100% - 2rem,960px); }
-        .page-nav { gap:.4rem 1rem; }
-      }
-      @media (max-height:660px) {
-        .profile { padding:.75rem 0; }
-        .activity { margin:.6rem 0; }
-        .activity-gif { width:104px; }
-        .copy { margin-top:.7rem; }
-        .copy p { margin-bottom:.45rem; font-size:.96rem; }
-        .social { margin-top:.65rem; }
-      }
-    </style>
+    <link rel="stylesheet" href="assets/site.css">
   </head>
   <body>
     <a class="skip" href="#about">Skip to about me</a>
@@ -100,11 +25,13 @@
       </div>
     </header>
     <main class="profile" id="about">
-      <h1>Michael Sagar Vasandani</h1>
+      <header class="intro">
+        <h1>Michael Sagar Vasandani</h1>
 
-      <section class="activity" aria-label="Animated illustration">
-        <img class="activity-gif" src="assets/home-cat-transparent.png" alt="Cat holding a snack bag" width="1254" height="1254">
-      </section>
+        <section class="activity" aria-label="Animated illustration">
+          <img class="activity-gif" src="assets/home-cat-transparent.png" alt="Cat holding a snack bag" width="1254" height="1254">
+        </section>
+      </header>
 
       <div class="copy">
         <p>I’m an <strong class="highlight">AI Engineer</strong> focused on turning new model capabilities into useful, reliable products. I work across agents, evaluation, data systems, and thoughtful interfaces.</p>

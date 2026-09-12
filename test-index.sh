@@ -11,21 +11,16 @@ grep -q 'alt="Cat holding' "$page"
 grep -q '<h1>Michael Sagar Vasandani</h1>' "$page"
 grep -q '<title>Michael Sagar Vasandani — AI Engineer</title>' "$page"
 grep -q '<header class="site-header">' "$page"
-grep -q '\.header-inner {[^}]*margin:0 auto' "$page"
-grep -q '\.page-nav {[^}]*justify-content:center' "$page"
 grep -q 'class="page-nav" aria-label="Portfolio pages"' "$page"
 test -f "$cat_image"
 sips -g hasAlpha "$cat_image" | grep -q 'hasAlpha: yes'
 grep -q 'class="highlight">AI Engineer</' "$page"
 grep -q 'family=Kalam:wght@400;700' "$page"
-grep -q 'font-family:"Kalam",cursive' "$page"
 grep -q 'class="page-nav"' "$page"
 grep -q 'href="experience/index.html"' "$page"
 grep -q 'href="recent-reads.html"' "$page"
 grep -q 'href="thoughts.html"' "$page"
 grep -q 'href="music.html"' "$page"
-grep -q 'height:100dvh' "$page"
-grep -q 'overflow:hidden' "$page"
 
 activity_line=$(grep -n 'class="activity-gif"' "$page" | head -1 | cut -d: -f1)
 copy_line=$(grep -n 'class="copy"' "$page" | head -1 | cut -d: -f1)

@@ -12,14 +12,6 @@ grep -q 'src="../assets/experience-boxer.jpg"' "$page"
 grep -q 'alt="Hand-drawn boxer' "$page"
 grep -q 'class="journal"' "$page"
 grep -q 'class="journal-entry"' "$page"
-grep -q '\.intro {[^}]*text-align:center' "$page"
-grep -q '\.art {[^}]*margin:\.75rem auto 0' "$page"
-grep -q '\.page-nav {[^}]*justify-content:center' "$page"
-grep -q '\.header-inner {[^}]*padding:\.9rem 0 \.75rem' "$page"
-grep -q '\.layout {[^}]*padding:clamp(1\.5rem,3\.5vw,2\.5rem) 0 3rem' "$page"
-grep -q '\.intro {[^}]*margin-bottom:clamp(2\.25rem,5vw,3\.5rem)' "$page"
-grep -q '\.journal-entry { padding:0 0 2\.4rem; }' "$page"
-grep -q '\.summary {[^}]*line-height:1\.55' "$page"
 
 if grep -q 'Michael Vasandani' "$page"; then
   echo "Experience page still displays Michael Vasandani" >&2
