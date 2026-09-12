@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Selected engineering experience across AI systems, product development, and research.">
+    <meta name="theme-color" content="#f3efe6">
+    <title>Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --paper:#f3efe6;
+        --ink:#25231f;
+        --muted:#716b61;
+        --line:#cec6b8;
+        --red:#a9432f;
+        --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      }
+      * { box-sizing:border-box; }
+      body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.55 var(--sans); }
+      a { color:inherit; text-underline-offset:.24em; text-decoration-color:var(--line); }
+      a:hover { text-decoration-color:var(--red); }
+      a:focus-visible { outline:2px solid var(--red); outline-offset:4px; }
+      .skip { position:absolute; left:-999px; top:1rem; padding:.55rem .8rem; background:var(--ink); color:var(--paper); }
+      .skip:focus { left:1rem; }
+      .header-inner { width:min(100% - 2.5rem,960px); margin:0 auto; padding:1.35rem 0 1.1rem; }
+      .page-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:.55rem 1.45rem; }
+      .page-nav a { color:var(--muted); font-size:.76rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+      .page-nav a[aria-current="page"],.page-nav a:hover { color:var(--ink); }
+      .layout { width:min(100% - 2.5rem,760px); margin:0 auto; padding:clamp(3rem,7vw,5.5rem) 0 5rem; }
+      .intro { margin-bottom:clamp(3.5rem,8vw,6rem); text-align:center; }
+      .experience-title { margin:0; font-family:"Kalam",cursive; font-size:clamp(2.5rem,5vw,3.6rem); font-weight:400; line-height:1; letter-spacing:-.03em; }
+      .art { width:170px; margin:1.2rem auto 0; transform:rotate(-1.5deg); }
+      .art img { display:block; width:100%; height:auto; border:1px solid var(--line); }
+      .journal-entry { padding:0 0 3.85rem; }
+      .journal-entry:last-child { padding-bottom:0; }
+      .entry-meta { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; }
+      .company { margin:0; color:var(--red); font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+      .period { color:var(--muted); font-size:.72rem; white-space:nowrap; }
+      .role { margin:.28rem 0 .7rem; font-family:"Kalam",cursive; font-size:clamp(1.45rem,3vw,1.85rem); font-weight:400; line-height:1.2; }
+      .summary { max-width:620px; margin:0; font-size:.98rem; line-height:1.65; }
+      .tools { margin:.65rem 0 0; color:var(--muted); font-size:.75rem; }
+      @media (max-width:650px) {
+        .header-inner,.layout { width:min(100% - 2rem,960px); }
+        .page-nav { gap:.5rem 1rem; }
+        .layout { padding-top:2.5rem; }
+        .intro { margin-bottom:3.75rem; }
+        .art { width:145px; }
+      }
+      @media (max-width:390px) {
+        .entry-meta { display:block; }
+        .period { display:block; margin-top:.2rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#experience">Skip to experience</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <nav class="page-nav" aria-label="Portfolio pages">
+          <a href="../index.html">About</a>
+          <a href="/experience/" aria-current="page">Experience</a>
+          <a href="/recent-reads.html">Reads</a>
+          <a href="/thoughts.html">Thoughts</a>
+          <a href="/music.html">Music</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="layout" id="experience">
+      <aside class="intro">
+        <h1 class="experience-title">/experience</h1>
+        <figure class="art">
+          <img src="../assets/experience-boxer.jpg" alt="Hand-drawn boxer asking if it is over, then answering that no bell was heard" width="736" height="736">
+        </figure>
+      </aside>
+
+      <div class="journal">
+        <article class="journal-entry">
+          <div class="entry-meta"><p class="company">ResMed</p><span class="period">June 2026 — present</span></div>
+          <h2 class="role">AI Engineer Intern</h2>
+          <p class="summary">Building production agent systems for crash remediation, engineering context, reusable internal agents, and self-maintaining documentation. The work has cut critical crash resolution to roughly one day, reached 40+ internal users, and saved more than ten developer hours each week.</p>
+          <p class="tools">LangGraph · MCP · RAG · AWS · DynamoDB</p>
+        </article>
+
+        <article class="journal-entry">
+          <div class="entry-meta"><p class="company">Qualcomm Institute</p><span class="period">September 2025 — May 2026</span></div>
+          <h2 class="role">Software Engineer — AI Intern</h2>
+          <p class="summary">Built an AI-assisted authoring pipeline that balanced generation with compliance, then connected it to real-time Unreal Engine workflows. Authoring became 85% faster while retrieval reduced token use and processing time by 70%.</p>
+          <p class="tools">FastAPI · MongoDB · Ollama · C++ · Unreal Engine</p>
+        </article>
+
+        <article class="journal-entry">
+          <div class="entry-meta"><p class="company">Smarr Lab</p><span class="period">April 2025 — May 2026</span></div>
+          <h2 class="role">Research Assistant</h2>
+          <p class="summary">Worked across research knowledge and data infrastructure: turning academic papers into connected knowledge graphs and accelerating a 700M+ row sleep-data pipeline by seven times.</p>
+          <p class="tools">Python · BigQuery · Polars · Codex · Obsidian</p>
+        </article>
+
+        <article class="journal-entry">
+          <div class="entry-meta"><p class="company">Boost Health Labs</p><span class="period">June — September 2025</span></div>
+          <h2 class="role">Software Engineer Intern</h2>
+          <p class="summary">Owned customer-facing features from requirements through production, connecting Angular interfaces with REST services and helping lift website engagement by 45%.</p>
+          <p class="tools">Angular · TypeScript · REST</p>
+        </article>
+
+        <article class="journal-entry">
+          <div class="entry-meta"><p class="company">TipTop Technologies</p><span class="period">March — June 2025</span></div>
+          <h2 class="role">Software Engineer Intern</h2>
+          <p class="summary">Created internal tools for engineering visibility and codebase discovery, including serverless GitHub analytics and natural-language retrieval. Leadership review time fell by 90%.</p>
+          <p class="tools">AWS Lambda · DynamoDB · Pinecone · GitHub Actions</p>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
