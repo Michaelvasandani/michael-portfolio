@@ -12,6 +12,7 @@
 }
 
 * { box-sizing: border-box; }
+html { scrollbar-gutter: stable; scroll-padding-top: 6rem; }
 body {
   min-height: 100dvh;
   margin: 0;
@@ -22,25 +23,28 @@ body {
 a { color: inherit; text-underline-offset: .24em; text-decoration-color: var(--line); }
 a:hover { text-decoration-color: var(--red); }
 a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
-.skip { position: absolute; left: -999px; top: 1rem; z-index: 1; padding: .55rem .8rem; background: var(--ink); color: var(--paper); }
+.skip { position: absolute; left: -999px; top: 1rem; z-index: 20; padding: .55rem .8rem; background: var(--ink); color: var(--paper); }
 .skip:focus { left: 1rem; }
 
+.site-header { position: sticky; top: 0; z-index: 10; background: var(--paper); }
 .header-inner { width: min(100% - 2.5rem, var(--content-width)); margin: 0 auto; padding: .75rem 0; }
-.page-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1.25rem; }
+.page-nav { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 440px; margin: 0 auto; gap: .25rem; }
 .page-nav a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 44px;
   color: var(--muted);
   font-size: .8125rem;
   letter-spacing: .08em;
   text-decoration: none;
   text-transform: uppercase;
+  border-radius: 4px;
 }
-.page-nav a[aria-current="page"], .page-nav a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .5em; }
+.page-nav a[aria-current="page"], .page-nav a:hover { color: var(--red); background: #f7efeb; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .5em; }
 .page-nav a[aria-current="page"] { font-weight: 650; }
 
-/* Both pages share one reading column and the same title/artwork rhythm. */
+/* Every page shares one reading column and the same title/artwork rhythm. */
 .profile, .layout {
   width: min(100% - 2.5rem, var(--content-width));
   margin: 0 auto;
@@ -56,8 +60,9 @@ h1 {
   letter-spacing: -.025em;
   text-wrap: balance;
 }
-.activity, .art { width: 144px; margin: 1.5rem auto 0; }
-.activity-gif, .art img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.activity, .art { width: 192px; height: 192px; margin: 1.5rem auto 0; display: grid; place-items: center; }
+.activity-gif, .art img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border: 1px solid var(--line); border-radius: 4px; }
+.activity-gif { border: 0; }
 .copy p, .summary { margin: 0; font-size: var(--body-size); line-height: 1.65; }
 .copy p + p { margin-top: 1rem; }
 .highlight { padding: .05em .22em; border-radius: .18em; background: var(--red-soft); color: #833522; font-weight: 650; }
@@ -73,7 +78,7 @@ h1 {
 .tools { margin: .75rem 0 0; color: var(--muted); font-size: .875rem; line-height: 1.6; }
 
 .thoughts-empty { text-align: center; }
-.thoughts-art { width: min(100%, 360px); margin-bottom: 1.5rem; }
+.thoughts-art { margin-bottom: 1.5rem; }
 .thoughts-art img { border-radius: 4px; }
 .empty-message { margin: 0; color: var(--muted); font-family: var(--display); font-size: clamp(1.5rem, 3vw, 1.875rem); }
 
@@ -82,8 +87,7 @@ h1 {
   .page-nav { gap: .25rem .625rem; }
   .page-nav a { font-size: .6875rem; letter-spacing: .06em; }
   .intro { margin-bottom: 2rem; }
-  .activity, .art { width: 128px; }
-  .thoughts-art { width: min(100%, 300px); }
+  .activity, .art { width: 168px; height: 168px; }
   .entry-meta { flex-direction: column; gap: .25rem; }
 }
 
@@ -131,6 +135,21 @@ h1 {
 .project-entry .role a:hover { text-decoration: underline; text-decoration-color: var(--red); }
 .project-arrow { font-family: var(--sans); font-size: .7em; color: var(--red); }
 [hidden] { display: none !important; }
+
+/* Native page navigation stays functional with no JavaScript or animation support. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .site-header { view-transition-name: site-header; }
+  main { view-transition-name: page-content; }
+  .page-nav a { transition: color 160ms ease, background-color 160ms ease; }
+  ::view-transition-group(*) { animation-duration: 200ms; }
+  ::view-transition-old(page-content) { animation: page-out 120ms ease-out both; }
+  ::view-transition-new(page-content) { animation: page-in 200ms ease-out both; }
+}
+/* Transition snapshots must never intercept another link click. */
+::view-transition { pointer-events: none; }
+@keyframes page-out { to { opacity: 0; transform: translateY(-4px); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(6px); } }
 @media (max-width: 520px) {
   .project-art { width: 168px; }
   .calendar-layout { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
