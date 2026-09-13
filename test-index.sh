@@ -2,18 +2,18 @@
 set -eu
 
 page="$(dirname "$0")/index.html"
-cat_image="$(dirname "$0")/assets/home-cat-transparent.png"
+dog_image="$(dirname "$0")/assets/home-dog.gif"
 
 grep -q 'class="profile"' "$page"
 grep -q 'class="activity-gif"' "$page"
-grep -q 'src="assets/home-cat-transparent.png"' "$page"
-grep -q 'alt="Cat holding' "$page"
+grep -q 'src="assets/home-dog.gif"' "$page"
+grep -q 'alt="Close-up of a dog' "$page"
 grep -q '<h1>Michael Sagar Vasandani</h1>' "$page"
 grep -q '<title>Michael Sagar Vasandani — AI Engineer</title>' "$page"
 grep -q '<header class="site-header">' "$page"
 grep -q 'class="page-nav" aria-label="Portfolio pages"' "$page"
-test -f "$cat_image"
-sips -g hasAlpha "$cat_image" | grep -q 'hasAlpha: yes'
+test -f "$dog_image"
+file "$dog_image" | grep -q 'GIF image data'
 grep -q 'class="highlight">AI Engineer</' "$page"
 grep -q 'family=Kalam:wght@400;700' "$page"
 grep -q 'class="page-nav"' "$page"
