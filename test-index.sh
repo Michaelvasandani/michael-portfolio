@@ -20,7 +20,11 @@ grep -q 'class="page-nav"' "$page"
 grep -q 'href="experience/index.html"' "$page"
 grep -q 'href="projects/index.html"' "$page"
 grep -q 'href="thoughts.html"' "$page"
-grep -q 'href="music.html"' "$page"
+
+if grep -q 'href="music.html"' "$page"; then
+  echo "The landing page still links to Music" >&2
+  exit 1
+fi
 
 activity_line=$(grep -n 'class="activity-gif"' "$page" | head -1 | cut -d: -f1)
 copy_line=$(grep -n 'class="copy"' "$page" | head -1 | cut -d: -f1)
