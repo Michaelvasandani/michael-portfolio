@@ -1,5 +1,5 @@
 :root {
-  --paper: #f3efe6;
+  --paper: #ffffff;
   --ink: #25231f;
   --muted: #716b61;
   --line: #cec6b8;
@@ -75,8 +75,61 @@ h1 {
 @media (max-width: 520px) {
   .header-inner, .profile, .layout { width: calc(100% - 2rem); }
   .page-nav { gap: .25rem .625rem; }
-  .page-nav a { font-size: .75rem; }
+  .page-nav a { font-size: .6875rem; letter-spacing: .06em; }
   .intro { margin-bottom: 2rem; }
   .activity, .art { width: 128px; }
   .entry-meta { flex-direction: column; gap: .25rem; }
+}
+
+/* Projects keeps the shared journal typography and paper/ink palette. */
+.project-art { width: 192px; }
+.contributions { margin-bottom: 2.75rem; }
+.calendar-heading { margin-bottom: 1rem; }
+.calendar-layout { display: grid; grid-template-columns: minmax(0, 1fr) 88px; gap: 1.5rem; align-items: start; }
+.calendar-main { min-width: 0; }
+.calendar-years { display: flex; flex-direction: column; gap: .4rem; }
+.calendar-years button { width: 100%; min-height: 38px; padding: .5rem .75rem; border: 0; border-radius: 4px; text-align: left; font: .8125rem var(--sans); background: transparent; color: var(--muted); cursor: pointer; }
+.calendar-years button:hover { background: var(--red-soft); color: var(--ink); }
+.calendar-years button[aria-pressed="true"] { color: var(--paper); background: var(--red); }
+.calendar-years button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.calendar-frame { position: relative; padding: 1rem .875rem .8rem; border: 1px solid var(--line); border-radius: 5px; }
+.calendar-status { margin: 0 0 .75rem; font-size: .9375rem; min-height: 1.65em; }
+.calendar-scroll { overflow-x: auto; padding-bottom: .25rem; }
+.calendar-scroll svg { display: block; width: 100%; min-width: 540px; }
+.calendar-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-top: .25rem; padding-left: 1.6rem; }
+.calendar-profile { margin: .5rem 0 0; color: var(--muted); font-size: .75rem; }
+.calendar-scroll text { fill: var(--muted); font: 10px var(--sans); }
+.calendar-day { stroke: var(--line); stroke-width: .35; }
+.calendar-day:focus { outline: none; stroke: var(--ink); stroke-width: 1.8; }
+.calendar-day[data-future="true"] { opacity: .4; }
+.calendar-day[data-level="0"] { fill: #e7e1d6; }
+.calendar-day[data-level="1"] { fill: #dfbdb0; }
+.calendar-day[data-level="2"] { fill: #c98e78; }
+.calendar-day[data-level="3"] { fill: #b7654e; }
+.calendar-day[data-level="4"] { fill: var(--red); }
+.calendar-legend { display: flex; align-items: center; justify-content: flex-end; gap: 4px; color: var(--muted); font-size: .6875rem; }
+.calendar-legend i { width: 10px; height: 10px; border-radius: 2px; }
+.calendar-legend i[data-level="0"] { background: #e7e1d6; }
+.calendar-legend i[data-level="1"] { background: #dfbdb0; }
+.calendar-legend i[data-level="2"] { background: #c98e78; }
+.calendar-legend i[data-level="3"] { background: #b7654e; }
+.calendar-legend i[data-level="4"] { background: var(--red); }
+.calendar-detail { position: absolute; left: 50%; bottom: calc(100% + .35rem); transform: translateX(-50%); margin: 0; padding: .35rem .6rem; max-width: 100%; width: max-content; border-radius: 3px; background: var(--ink); color: var(--paper); font-size: .6875rem; pointer-events: none; }
+.calendar-detail:empty { display: none; }
+.calendar-source { font-size: .6875rem; color: var(--muted); }
+.calendar-retry { padding: .45rem .7rem; font: inherit; font-size: .8125rem; color: var(--red); background: transparent; border: 1px solid var(--line); border-radius: 3px; cursor: pointer; }
+.calendar-retry:focus-visible, select:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.pinned-heading { margin-bottom: 1.25rem; }
+.project-entry .role { margin-top: 0; }
+.project-entry .role a { text-decoration: none; }
+.project-entry .role a:hover { text-decoration: underline; text-decoration-color: var(--red); }
+.project-arrow { font-family: var(--sans); font-size: .7em; color: var(--red); }
+[hidden] { display: none !important; }
+@media (max-width: 520px) {
+  .project-art { width: 168px; }
+  .calendar-layout { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+  .calendar-years { grid-row: 1; flex-direction: row; gap: .25rem; }
+  .calendar-years button { text-align: center; }
+  .calendar-footer { padding-left: 0; }
+  .calendar-frame { padding: .75rem; }
 }

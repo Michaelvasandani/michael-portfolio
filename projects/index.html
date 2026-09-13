@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pinned projects and live GitHub contributions from Michael Vasandani.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Projects — Michael Vasandani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip" href="#projects">Skip to projects</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <nav class="page-nav" aria-label="Portfolio pages">
+          <a href="../index.html">About</a>
+          <a href="../experience/index.html">Experience</a>
+          <a href="index.html" aria-current="page">Projects</a>
+          <a href="/thoughts.html">Thoughts</a>
+          <a href="/music.html">Music</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="layout" id="projects">
+      <header class="intro">
+        <h1>/projects</h1>
+        <figure class="art project-art">
+          <img src="../assets/projects-scientists.jpg" alt="Playful image of Nikola Tesla and Albert Einstein conjuring electricity and light" width="735" height="489">
+        </figure>
+      </header>
+
+      <section class="contributions" aria-labelledby="contributions-heading">
+        <h2 class="company calendar-heading" id="contributions-heading">On GitHub</h2>
+        <div class="calendar-layout">
+          <div class="calendar-main">
+            <p class="calendar-status" id="calendar-status" role="status">Enable JavaScript to view the live contribution calendar.</p>
+            <div class="calendar-frame">
+              <div class="calendar-scroll" id="calendar-chart" hidden></div>
+              <div class="calendar-footer">
+                <a class="calendar-source" href="https://docs.github.com/en/account-and-profile/concepts/contributions-on-your-profile">How contributions are counted</a>
+                <div class="calendar-legend" id="calendar-legend" hidden><span>Less</span><i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><span>More</span></div>
+              </div>
+              <button class="calendar-retry" id="calendar-retry" type="button" hidden>Try again</button>
+              <p class="calendar-detail" id="calendar-detail" role="status" hidden></p>
+            </div>
+            <p class="calendar-profile"><a href="https://github.com/Michaelvasandani?tab=overview">View activity on GitHub ↗</a></p>
+          </div>
+          <nav class="calendar-years" id="contribution-years" aria-label="Contribution year" hidden></nav>
+        </div>
+      </section>
+
+      <section class="journal" aria-labelledby="pinned-heading">
+        <h2 class="company pinned-heading" id="pinned-heading">Pinned projects</h2>
+        <article class="journal-entry project-entry">
+          <h3 class="role"><a href="https://github.com/Michaelvasandani/Voice-Agent">Voice Agent<span class="project-arrow" aria-hidden="true"> ↗</span></a></h3>
+          <p class="summary">A personal AI voice assistant that picks up missed calls, takes messages, and schedules a callback on my calendar.</p>
+          <p class="tools">TypeScript · Bland AI · Google Calendar</p>
+        </article>
+
+        <article class="journal-entry project-entry">
+          <h3 class="role"><a href="https://github.com/Michaelvasandani/aitb-hackathon">AITB Hackathon<span class="project-arrow" aria-hidden="true"> ↗</span></a></h3>
+          <p class="summary">Skills, configurations, and workflows for AI Trailblazers, including organization lookup tools.</p>
+          <p class="tools">Python · AI workflows</p>
+        </article>
+
+        <article class="journal-entry project-entry">
+          <h3 class="role"><a href="https://github.com/Michaelvasandani/Larp-code">Larp Code<span class="project-arrow" aria-hidden="true"> ↗</span></a></h3>
+          <p class="summary">A Chrome extension built around a React popup, email sign-in, and a background worker that manages the authenticated session.</p>
+          <p class="tools">TypeScript · React · Chrome extension</p>
+        </article>
+
+        <article class="journal-entry project-entry">
+          <h3 class="role"><a href="https://github.com/Michaelvasandani/musa-labs">SafeTrip SF<span class="project-arrow" aria-hidden="true"> ↗</span></a></h3>
+          <p class="summary">A multi-agent travel planner that turns preferences into San Francisco itineraries, with crime-data analysis and interactive route maps.</p>
+          <p class="tools">Python · LangGraph · FastAPI · Streamlit</p>
+        </article>
+
+        <article class="journal-entry project-entry">
+          <h3 class="role"><a href="https://github.com/Michaelvasandani/michael-portfolio">Personal Portfolio<span class="project-arrow" aria-hidden="true"> ↗</span></a></h3>
+          <p class="summary">My corner of the web for projects, engineering experience, and the things I’m thinking about.</p>
+          <p class="tools">HTML · CSS · JavaScript</p>
+        </article>
+
+        <article class="journal-entry project-entry">
+          <h3 class="role"><a href="https://github.com/Michaelvasandani/OpenRecruit">OpenRecruit<span class="project-arrow" aria-hidden="true"> ↗</span></a></h3>
+          <p class="summary">An experimental, local macOS app for discovering employment opportunities, with Claude and Codex agents and evidence-backed fit evaluations.</p>
+          <p class="tools">TypeScript · Electron · SQLite · Fork of OpenTrade</p>
+        </article>
+
+      </section>
+    </main>
+    <script type="module" src="../assets/projects.mjs"></script>
+  </body>
+</html>

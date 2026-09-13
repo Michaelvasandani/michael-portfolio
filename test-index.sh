@@ -18,7 +18,7 @@ grep -q 'class="highlight">AI Engineer</' "$page"
 grep -q 'family=Kalam:wght@400;700' "$page"
 grep -q 'class="page-nav"' "$page"
 grep -q 'href="experience/index.html"' "$page"
-grep -q 'href="recent-reads.html"' "$page"
+grep -q 'href="projects/index.html"' "$page"
 grep -q 'href="thoughts.html"' "$page"
 grep -q 'href="music.html"' "$page"
 
