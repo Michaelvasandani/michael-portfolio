@@ -2,7 +2,7 @@
 
 Static page at `/projects/`, sharing `assets/site.css` with About and Experience.
 The six project entries follow Michaelvasandani's pinned GitHub repositories,
-checked September 11, 2026. Descriptions are based on the repository documentation.
+checked September 20, 2026. Descriptions are based on the repository documentation.
 Update the entries in `index.html` when pins change; they remain available without JavaScript.
 
 ## Contribution calendar
