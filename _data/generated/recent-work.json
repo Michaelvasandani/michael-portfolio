@@ -1,20 +1,53 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-14T07:58:07.145Z",
+  "updatedAt": "2026-09-21T08:02:02.315Z",
   "entries": [
     {
-      "id": "writing-coach-manually-testable-prototype",
-      "date": "2026-09-13",
-      "headline": "Built a manually testable local writing coach prototype",
-      "summary": "Implemented a browser-based writing coach prototype with workspace flows, thought development, draft snapshots, suggestions, coaching contracts, local browser state, AI API routes, and automated tests. The repository describes it as an authorship-preserving, local prototype for writing coaching.",
+      "id": "j-mail-unified-inbox",
+      "date": "2026-09-18",
+      "headline": "Built a read-only unified Gmail inbox",
+      "summary": "Implemented a local Next.js inbox that connects multiple Gmail accounts with readonly OAuth, incremental synchronization, encrypted refresh tokens, searchable messages, sanitized message viewing, and attachment downloads.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Google OAuth",
+        "Gmail API",
+        "Postgres",
+        "pgvector",
+        "Drizzle ORM",
+        "Docker"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/1"
+    },
+    {
+      "id": "j-mail-ai-triage",
+      "date": "2026-09-18",
+      "headline": "Added AI inbox triage and filtering",
+      "summary": "Added sync-time message classification with categories, job outcomes, and reply, deadline, sender, and payment flags. Results are stored with confidence distributions and exposed through inbox filters and relabeling endpoints.",
       "technologies": [
         "TypeScript",
         "Next.js",
-        "React",
-        "Vitest",
-        "Vercel AI Gateway"
+        "TypeSafe (Jev)",
+        "Postgres",
+        "Drizzle ORM"
       ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/writing-coach-/commit/fb887f1300a4bb1e40dc46161d245ecaf32b35dd"
+      "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/2"
+    },
+    {
+      "id": "j-mail-rag-chat",
+      "date": "2026-09-18",
+      "headline": "Added citation-backed inbox RAG chat",
+      "summary": "Implemented an Ask panel that indexes cleaned email content, combines vector and full-text retrieval with reranking, and uses Claude tools to answer questions with citations to specific emails.",
+      "technologies": [
+        "TypeScript",
+        "Next.js",
+        "Claude",
+        "Ollama",
+        "pgvector",
+        "Postgres full-text search",
+        "Transformers.js"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/3"
     }
   ]
 }
