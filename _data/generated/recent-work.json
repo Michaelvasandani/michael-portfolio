@@ -1,36 +1,37 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-28T08:47:46.130Z",
+  "updatedAt": "2026-10-05T09:14:38.450Z",
   "entries": [
     {
-      "id": "guess-the-player-soccerdle",
-      "date": "2026-09-24",
-      "headline": "Built Soccerdle footballer-guessing prototype",
-      "summary": "Authored a Wordle-style footballer guessing game with a Python ETL pipeline, PostgreSQL data model, plain Node server, and vanilla HTML/CSS/JavaScript frontend. The prototype compares guesses across nationality, position, leagues, clubs, and birth year.",
-      "technologies": [
-        "Python",
-        "PostgreSQL",
-        "Node.js",
-        "JavaScript",
-        "HTML",
-        "CSS"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/guess-the-player/commit/d156a00a048f69183dec5f8e5d8d60d43f648849"
-    },
-    {
-      "id": "j-mail-ai-inbox-workstream",
+      "id": "j-mail-unified-inbox",
       "date": "2026-09-18",
-      "headline": "Expanded J-Mail with AI triage and inbox RAG chat",
-      "summary": "Merged a unified Gmail inbox foundation plus AI-assisted triage and an Ask panel. The work adds message categorization and flags, local embeddings, hybrid vector/full-text retrieval, reranking, Claude-powered tool use, and citations back to email records.",
+      "headline": "Built a read-only unified Gmail inbox",
+      "summary": "Implemented the initial J-Mail application with Google OAuth using the Gmail read-only scope, multi-account inbox aggregation, incremental synchronization, sanitized message viewing, attachment downloads, search, and encrypted refresh-token storage.",
       "technologies": [
-        "TypeScript",
         "Next.js",
-        "PostgreSQL",
+        "TypeScript",
+        "Gmail API",
+        "Postgres",
         "pgvector",
         "Drizzle ORM",
-        "Gmail API",
+        "Docker",
+        "AES-256-GCM"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/1"
+    },
+    {
+      "id": "j-mail-ai-inbox",
+      "date": "2026-09-18",
+      "headline": "Added AI inbox triage and semantic Q&A",
+      "summary": "Added on-sync email classification and flags with TypeSafe, then implemented an Ask panel using locally generated embeddings, hybrid retrieval, reranking, Claude tool calls, and citations to matching emails.",
+      "technologies": [
+        "TypeScript",
+        "TypeSafe",
+        "Claude",
         "Ollama",
-        "Claude"
+        "pgvector",
+        "Postgres full-text search",
+        "Transformers.js"
       ],
       "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/3"
     },
@@ -38,12 +39,14 @@
       "id": "writing-coach-thought-development",
       "date": "2026-09-14",
       "headline": "Implemented session-only thought development for Margin",
-      "summary": "Merged a local writing-coach prototype feature for temporary thought-development sessions, including session notes, contextual entry, temporary article shapes, copy/discard flows, structured response validation, and related tests.",
+      "summary": "Implemented the local writing-coach workflow for temporary thought-development sessions, including structured coaching contracts, session notes, contextual entry, temporary article state, copy/discard behavior, and validation tests.",
       "technologies": [
         "TypeScript",
         "Next.js",
         "React",
-        "Vitest"
+        "Vitest",
+        "Vercel AI Gateway",
+        "localStorage"
       ],
       "evidenceUrl": "https://github.com/Michaelvasandani/writing-coach-/pull/1"
     }

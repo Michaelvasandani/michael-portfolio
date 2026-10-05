@@ -19,10 +19,10 @@
   ],
   "activityCursor": "22110147683",
   "lastPinSyncAt": "2026-09-11T20:59:17.393Z",
-  "lastDigestRefreshAt": "2026-09-28T08:47:46.130Z",
+  "lastDigestRefreshAt": "2026-10-05T09:14:38.450Z",
   "checkpoint": {
-    "revision": "95c0da8a510b49ace6556d67339d1df2238810c7",
-    "committedAt": "2026-09-28T08:47:46.130Z"
+    "revision": "40ae5cc78f57d0c85ac5c5699cbf6a134ead31fd",
+    "committedAt": "2026-10-05T09:14:38.450Z"
   },
   "publishedRevision": null,
   "openIncidentFingerprints": [],
