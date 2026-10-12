@@ -17,12 +17,12 @@
     "R_kgDOT7lMFg",
     "R_kgDOT6m7uQ"
   ],
-  "activityCursor": "22110147683",
+  "activityCursor": "23761156386",
   "lastPinSyncAt": "2026-09-11T20:59:17.393Z",
-  "lastDigestRefreshAt": "2026-10-05T09:14:38.450Z",
+  "lastDigestRefreshAt": "2026-10-12T09:25:45.392Z",
   "checkpoint": {
-    "revision": "40ae5cc78f57d0c85ac5c5699cbf6a134ead31fd",
-    "committedAt": "2026-10-05T09:14:38.450Z"
+    "revision": "27da6735a64db9eaed8ae4745c2cde925394acad",
+    "committedAt": "2026-10-12T09:25:45.392Z"
   },
   "publishedRevision": null,
   "openIncidentFingerprints": [],

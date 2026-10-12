@@ -1,54 +1,33 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05T09:14:38.450Z",
+  "updatedAt": "2026-10-12T09:25:45.392Z",
   "entries": [
     {
-      "id": "j-mail-unified-inbox",
-      "date": "2026-09-18",
-      "headline": "Built a read-only unified Gmail inbox",
-      "summary": "Implemented the initial J-Mail application with Google OAuth using the Gmail read-only scope, multi-account inbox aggregation, incremental synchronization, sanitized message viewing, attachment downloads, search, and encrypted refresh-token storage.",
-      "technologies": [
-        "Next.js",
-        "TypeScript",
-        "Gmail API",
-        "Postgres",
-        "pgvector",
-        "Drizzle ORM",
-        "Docker",
-        "AES-256-GCM"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/1"
-    },
-    {
-      "id": "j-mail-ai-inbox",
-      "date": "2026-09-18",
-      "headline": "Added AI inbox triage and semantic Q&A",
-      "summary": "Added on-sync email classification and flags with TypeSafe, then implemented an Ask panel using locally generated embeddings, hybrid retrieval, reranking, Claude tool calls, and citations to matching emails.",
+      "id": "browser-click-pr-14",
+      "date": "2026-10-11",
+      "headline": "Built and merged browser-click v1 Chrome extension",
+      "summary": "Merged the first version of browser-click, a Chrome MV3 extension that lets users select visible page content, ask Claude about it in an in-page panel, continue conversations, add selections, use optional web search, and recover from errors. The implementation includes the options page, page-context extraction, streamed responses, Markdown rendering, tests, documentation, and a manual test checklist.",
       "technologies": [
         "TypeScript",
-        "TypeSafe",
-        "Claude",
-        "Ollama",
-        "pgvector",
-        "Postgres full-text search",
-        "Transformers.js"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/J-Mail/pull/3"
-    },
-    {
-      "id": "writing-coach-thought-development",
-      "date": "2026-09-14",
-      "headline": "Implemented session-only thought development for Margin",
-      "summary": "Implemented the local writing-coach workflow for temporary thought-development sessions, including structured coaching contracts, session notes, contextual entry, temporary article state, copy/discard behavior, and validation tests.",
-      "technologies": [
-        "TypeScript",
-        "Next.js",
         "React",
-        "Vitest",
-        "Vercel AI Gateway",
-        "localStorage"
+        "Chrome MV3",
+        "WXT",
+        "Anthropic TypeScript SDK",
+        "Vitest"
       ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/writing-coach-/pull/1"
+      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/14"
+    },
+    {
+      "id": "browser-click-pr-13",
+      "date": "2026-10-11",
+      "headline": "Added Claude Code plugin configuration and implementation skill",
+      "summary": "Merged repository configuration for the official Claude Code plugin marketplace and vendored the implement-spec skill, including its license, so the repository can load the skill during Claude Code sessions.",
+      "technologies": [
+        "Claude Code",
+        "JSON",
+        "Markdown"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/13"
     }
   ]
 }
