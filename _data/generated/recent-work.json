@@ -1,33 +1,56 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-12T09:25:45.392Z",
+  "updatedAt": "2026-10-19T07:55:10.277Z",
   "entries": [
     {
-      "id": "browser-click-pr-14",
+      "id": "stylist-ai-studio-and-shopping",
+      "date": "2026-10-14",
+      "headline": "Expanded Stylist AI into an interactive wardrobe and shopping experience",
+      "summary": "Built a tool-calling stylist shared by text and hands-free voice, with wardrobe search, weather-aware outfit creation, saved looks, and Shopify shopping. Added multi-look outfit boards, inspiration-photo matching, shopping details, calendar-aware styling, and an interactive outfit stage with alternates and slot-by-slot swapping.",
+      "technologies": [
+        "TypeScript",
+        "Next.js",
+        "AI SDK",
+        "Vercel AI Gateway",
+        "Neon",
+        "Postgres",
+        "pgvector",
+        "Drizzle ORM",
+        "Shopify Catalog MCP",
+        "CSS"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/stylist-ai-/commit/f1e14d51a8d44c3d91cfccf86fb038a1fb5b5723"
+    },
+    {
+      "id": "stylist-ai-wardrobe-ingest-and-checkout",
+      "date": "2026-10-14",
+      "headline": "Improved wardrobe ingestion and product variant selection",
+      "summary": "Added transparent garment cutouts for cleaner wardrobe presentation and updated Shopify selection to account for store-specific size labels, requested colours, and available inventory before checkout.",
+      "technologies": [
+        "TypeScript",
+        "Next.js",
+        "AI Gateway",
+        "Blob",
+        "Neon",
+        "pgvector",
+        "Shopify Catalog MCP"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/stylist-ai-/commit/b2d2e6dd525d5aaad00829f174ca192ab387d570"
+    },
+    {
+      "id": "browser-click-v1",
       "date": "2026-10-11",
-      "headline": "Built and merged browser-click v1 Chrome extension",
-      "summary": "Merged the first version of browser-click, a Chrome MV3 extension that lets users select visible page content, ask Claude about it in an in-page panel, continue conversations, add selections, use optional web search, and recover from errors. The implementation includes the options page, page-context extraction, streamed responses, Markdown rendering, tests, documentation, and a manual test checklist.",
+      "headline": "Merged browser-click v1 Chrome extension",
+      "summary": "Delivered a Chrome MV3 extension that lets users select part of a page and ask Claude about it in an in-page panel. The v1 includes frozen-screen selection, page context, streamed answers, follow-ups, additional selections, web search, settings, and inline error recovery without a backend or telemetry.",
       "technologies": [
         "TypeScript",
         "React",
         "Chrome MV3",
         "WXT",
-        "Anthropic TypeScript SDK",
+        "Anthropic API",
         "Vitest"
       ],
       "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/14"
-    },
-    {
-      "id": "browser-click-pr-13",
-      "date": "2026-10-11",
-      "headline": "Added Claude Code plugin configuration and implementation skill",
-      "summary": "Merged repository configuration for the official Claude Code plugin marketplace and vendored the implement-spec skill, including its license, so the repository can load the skill during Claude Code sessions.",
-      "technologies": [
-        "Claude Code",
-        "JSON",
-        "Markdown"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/13"
     }
   ]
 }
