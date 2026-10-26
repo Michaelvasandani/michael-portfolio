@@ -1,56 +1,45 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-19T07:55:10.277Z",
+  "updatedAt": "2026-10-26T07:55:25.814Z",
   "entries": [
     {
-      "id": "stylist-ai-studio-and-shopping",
-      "date": "2026-10-14",
-      "headline": "Expanded Stylist AI into an interactive wardrobe and shopping experience",
-      "summary": "Built a tool-calling stylist shared by text and hands-free voice, with wardrobe search, weather-aware outfit creation, saved looks, and Shopify shopping. Added multi-look outfit boards, inspiration-photo matching, shopping details, calendar-aware styling, and an interactive outfit stage with alternates and slot-by-slot swapping.",
-      "technologies": [
-        "TypeScript",
-        "Next.js",
-        "AI SDK",
-        "Vercel AI Gateway",
-        "Neon",
-        "Postgres",
-        "pgvector",
-        "Drizzle ORM",
-        "Shopify Catalog MCP",
-        "CSS"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/stylist-ai-/commit/f1e14d51a8d44c3d91cfccf86fb038a1fb5b5723"
-    },
-    {
-      "id": "stylist-ai-wardrobe-ingest-and-checkout",
-      "date": "2026-10-14",
-      "headline": "Improved wardrobe ingestion and product variant selection",
-      "summary": "Added transparent garment cutouts for cleaner wardrobe presentation and updated Shopify selection to account for store-specific size labels, requested colours, and available inventory before checkout.",
-      "technologies": [
-        "TypeScript",
-        "Next.js",
-        "AI Gateway",
-        "Blob",
-        "Neon",
-        "pgvector",
-        "Shopify Catalog MCP"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/stylist-ai-/commit/b2d2e6dd525d5aaad00829f174ca192ab387d570"
-    },
-    {
-      "id": "browser-click-v1",
-      "date": "2026-10-11",
-      "headline": "Merged browser-click v1 Chrome extension",
-      "summary": "Delivered a Chrome MV3 extension that lets users select part of a page and ask Claude about it in an in-page panel. The v1 includes frozen-screen selection, page context, streamed answers, follow-ups, additional selections, web search, settings, and inline error recovery without a backend or telemetry.",
+      "id": "browser-click-page-tools",
+      "date": "2026-10-26",
+      "headline": "Merged page interaction tools into browser-click",
+      "summary": "Merged pull request #25, adding Marks and Page Actions that let the Assistant inspect, annotate, scroll, click, and type on the current page with approval and refusal rules documented in the extension.",
       "technologies": [
         "TypeScript",
         "React",
         "Chrome MV3",
-        "WXT",
-        "Anthropic API",
-        "Vitest"
+        "MCP",
+        "Claude Code"
       ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/14"
+      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/25"
+    },
+    {
+      "id": "browser-click-claude-code-backend",
+      "date": "2026-10-24",
+      "headline": "Added Claude Code as a browser-click backend",
+      "summary": "Merged pull request #15, adding a native messaging host and conversation handling so browser-click can answer through the user’s local Claude Code installation, with saved sessions and an options-page setup flow.",
+      "technologies": [
+        "TypeScript",
+        "Node.js",
+        "Chrome Native Messaging",
+        "Claude Code"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/15"
+    },
+    {
+      "id": "ai-ressearcher-search-performance",
+      "date": "2026-10-21",
+      "headline": "Improved live literature-search execution",
+      "summary": "Updated the researcher to run queries in parallel, cache Europe PMC full text with bounds, reuse transient Crossref retraction checks briefly, and batch DOI notice lookups.",
+      "technologies": [
+        "Python",
+        "Europe PMC",
+        "Crossref"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/ai-ressearcher/commit/9eb6676c79f77423f52f022d44386b120d0c72e6"
     }
   ]
 }
