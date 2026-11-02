@@ -1,45 +1,46 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T07:55:25.814Z",
+  "updatedAt": "2026-11-02T09:39:29.602Z",
   "entries": [
+    {
+      "id": "pins-landing-prototype-c",
+      "date": "2026-10-27",
+      "headline": "Built a Pins video-downloader landing-page prototype",
+      "summary": "Added an SEO-focused landing page with a split hero, download demo, capability tabs with screen recordings, synced how-to content, FAQ, and structured data for SoftwareApplication, HowTo, and FAQPage.",
+      "technologies": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "SEO structured data"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/pins-landing/commit/045c1c904372e159d981c03167414885ec78da22"
+    },
+    {
+      "id": "pins-landing-media-pipeline",
+      "date": "2026-10-27",
+      "headline": "Developed Pins product media and video-edit pipeline",
+      "summary": "Added a design-language system, edited how-it-works and demo videos, prototype variants, product screenshots, and supporting video-edit scripts for the Pins landing experience.",
+      "technologies": [
+        "Python",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Video editing"
+      ],
+      "evidenceUrl": "https://github.com/Michaelvasandani/pins-landing/commit/a77e42f2a434eecf5120f6b4e759b5b3fb5dc9b7"
+    },
     {
       "id": "browser-click-page-tools",
       "date": "2026-10-26",
-      "headline": "Merged page interaction tools into browser-click",
-      "summary": "Merged pull request #25, adding Marks and Page Actions that let the Assistant inspect, annotate, scroll, click, and type on the current page with approval and refusal rules documented in the extension.",
+      "headline": "Added page-drawing and page-action capabilities to browser-click",
+      "summary": "Merged the implementation of Marks and Page Actions, allowing the assistant to draw annotations on webpages and perform controlled in-page actions such as scrolling, clicking, and typing.",
       "technologies": [
         "TypeScript",
-        "React",
         "Chrome MV3",
-        "MCP",
-        "Claude Code"
+        "Claude Code",
+        "Native Messaging"
       ],
       "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/25"
-    },
-    {
-      "id": "browser-click-claude-code-backend",
-      "date": "2026-10-24",
-      "headline": "Added Claude Code as a browser-click backend",
-      "summary": "Merged pull request #15, adding a native messaging host and conversation handling so browser-click can answer through the user’s local Claude Code installation, with saved sessions and an options-page setup flow.",
-      "technologies": [
-        "TypeScript",
-        "Node.js",
-        "Chrome Native Messaging",
-        "Claude Code"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/browser-click/pull/15"
-    },
-    {
-      "id": "ai-ressearcher-search-performance",
-      "date": "2026-10-21",
-      "headline": "Improved live literature-search execution",
-      "summary": "Updated the researcher to run queries in parallel, cache Europe PMC full text with bounds, reuse transient Crossref retraction checks briefly, and batch DOI notice lookups.",
-      "technologies": [
-        "Python",
-        "Europe PMC",
-        "Crossref"
-      ],
-      "evidenceUrl": "https://github.com/Michaelvasandani/ai-ressearcher/commit/9eb6676c79f77423f52f022d44386b120d0c72e6"
     }
   ]
 }
